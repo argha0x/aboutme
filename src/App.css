@@ -12,18 +12,57 @@ body {
 
 /* Sidebar styles */
 .sidebar {
-  border-right: 1px solid #dee2e6;
+  border-right: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.03);
 }
 
-.sidebar .nav-link {
-  padding: 0.5rem 0;
+.sidebar-nav .nav-link-custom {
   color: #495057;
-  transition: all 0.2s ease;
+  border-radius: 6px;
+  padding: 0.6rem 1rem;
+  font-weight: 500;
+  position: relative;
 }
 
-.sidebar .nav-link:hover {
+.sidebar-nav .nav-link-custom:hover {
   color: #000;
-  transform: translateX(5px);
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+.sidebar-nav .nav-link-custom.active {
+  color: #000;
+  background-color: rgba(0, 0, 0, 0.05);
+  font-weight: 600;
+}
+
+.sidebar-nav .nav-link-custom.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 4px;
+  background: linear-gradient(to bottom, #6c757d, #343a40);
+  border-radius: 0 4px 4px 0;
+}
+
+.social-icons a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+
+.social-icons a:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Mobile navbar refinements */
+.navbar .nav-link.active {
+  font-weight: 600;
+  color: #000 !important;
 }
 
 /* Section styles */
