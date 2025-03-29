@@ -3,6 +3,7 @@ import { Nav, Navbar, Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import ThemeToggle from './ThemeToggle';
 
 const Sidebar = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
@@ -81,7 +82,12 @@ const Sidebar = () => {
       <Navbar bg="white" expand="lg" className="mb-4 shadow-sm">
         <Container>
           <Navbar.Brand as={Link} to="/" className="fw-bold">Argha Chakraborty</Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <div className="d-flex align-items-center">
+            <div className="mobile-theme-toggle me-3">
+              <ThemeToggle id="mobile-theme-toggle" />
+            </div>
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          </div>
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">
               {mainLinks.map(link => (
@@ -117,10 +123,8 @@ const Sidebar = () => {
 
   // Desktop Sidebar
   return (
-    <div className="sidebar d-flex flex-column flex-shrink-0 p-3 bg-white shadow-sm" style={{ width: '280px', height: '100vh', position: 'fixed' }}>
-      <Link to="/" className="d-flex align-items-center mb-4 me-md-auto text-decoration-none border-bottom pb-3">
-        <span className="fs-4 fw-bold text-dark">Argha Chakraborty</span>
-      </Link>
+    <div className="sidebar d-flex flex-column flex-shrink-0 p-3 shadow-sm" style={{ width: '280px', height: '100vh', position: 'fixed' }}>
+
       
       <Nav className="flex-column sidebar-nav">
         {mainLinks.map(link => (
@@ -160,9 +164,9 @@ const Sidebar = () => {
       <div className="mt-auto pt-3 border-top text-center text-muted small">
         <p className="mb-0">&copy; {new Date().getFullYear()} Argha Chakraborty</p>
         <div className="social-icons mt-2">
-          <a href="https://github.com" className="me-2 text-dark"><i className="bi bi-github"></i></a>
-          <a href="https://linkedin.com" className="me-2 text-dark"><i className="bi bi-linkedin"></i></a>
-          <a href="https://twitter.com" className="me-2 text-dark"><i className="bi bi-twitter"></i></a>
+          <a href="https://github.com" className="me-2"><i className="bi bi-github"></i></a>
+          <a href="https://linkedin.com" className="me-2"><i className="bi bi-linkedin"></i></a>
+          <a href="https://twitter.com" className="me-2"><i className="bi bi-twitter"></i></a>
         </div>
       </div>
     </div>

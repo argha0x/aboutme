@@ -26,21 +26,21 @@ const Education = () => {
   ];
 
   return (
-    <Container id="education" className="py-5">
-      <h2 className="border-bottom pb-2 mb-4">Education</h2>
+    <Container id="education" className="py-4">
+      <h2 className="border-bottom pb-2 mb-3">Education</h2>
       {educationData.map(edu => (
-        <Card key={edu.id} className="mb-4 border-0 shadow-sm">
-          <Card.Body className="p-4">
+        <Card key={edu.id} className="mb-3 border-0 shadow-sm">
+          <Card.Body className="p-3">
             <Row>
-              <Col md={8}>
+              <Col md={9}>
                 <h4 className="mb-1">{edu.degree}</h4>
-                <h5 className="text-muted mb-2">{edu.institution}, {edu.location}</h5>
+                <h5 className="text-secondary mb-2">{edu.institution}, {edu.location}</h5>
                 <p className="text-muted mb-2"><strong>Duration:</strong> {edu.duration}</p>
                 <p className="text-muted mb-3"><strong>Specialization:</strong> {edu.specialization}</p>
                 <p>{edu.description}</p>
               </Col>
-              <Col md={4} className="d-flex align-items-center justify-content-md-end mt-3 mt-md-0">
-                <a href={edu.certificateLink} className="btn btn-outline-dark">
+              <Col md={3} className="d-flex align-items-center justify-content-md-end mt-3 mt-md-0">
+                <a href={edu.certificateLink} className="btn btn-sm btn-outline-dark">
                   <i className="bi bi-file-earmark-pdf me-2"></i>View Degree
                 </a>
               </Col>
