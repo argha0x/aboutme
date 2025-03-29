@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Nav, Navbar, Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -8,25 +8,56 @@ const Sidebar = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const [activeLink, setActiveLink] = useState('about');
   
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-    
-    window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
-
-  const mainLinks = [
+  // Define links first to avoid the initialization error
+  const mainLinks = useMemo(() => [
     { id: 'about', title: 'About Me', icon: 'bi-person' },
     { id: 'education', title: 'Education', icon: 'bi-mortarboard' },
     { id: 'projects', title: 'Projects', icon: 'bi-code-square' },
     { id: 'experience', title: 'Work Experience', icon: 'bi-briefcase' },
     { id: 'publications', title: 'Publications', icon: 'bi-journal-text' },
     { id: 'contact', title: 'Contact', icon: 'bi-envelope' }
-  ];
+  ], []);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    window.addEventListener('resize', handleResize);
+    
+    // Improved scroll detection with better handling for last section
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+      
+      // If we're at the bottom of the page, highlight the last link (contact)
+      if (scrollPosition + windowHeight >= documentHeight - 50) {
+        setActiveLink('contact');
+        return;
+      }
+      
+      // Otherwise determine which section is in view
+      for (let i = mainLinks.length - 1; i >= 0; i--) {
+        const section = document.getElementById(mainLinks[i].id);
+        if (section && section.offsetTop <= scrollPosition + 200) {
+          setActiveLink(mainLinks[i].id);
+          break;
+        }
+      }
+    };
+    
+    // Run handleScroll on initial load
+    handleScroll();
+    
+    // Add event listener for scrolling
+    window.addEventListener('scroll', handleScroll);
+    
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [mainLinks]);
 
   const externalLinks = [
     { id: 'hobbies', title: 'Hobbies', url: '#', icon: 'bi-heart' },
