@@ -1,38 +1,209 @@
+/* Base styles */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  background-color: #f8f9fa;
+}
+
+/* Remove default styles from App.css */
 .App {
-  text-align: center;
+  text-align: left;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Sidebar styles */
+.sidebar {
+  border-right: 1px solid #dee2e6;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.sidebar .nav-link {
+  padding: 0.5rem 0;
+  color: #495057;
+  transition: all 0.2s ease;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.sidebar .nav-link:hover {
+  color: #000;
+  transform: translateX(5px);
+}
+
+/* Section styles */
+section {
+  margin-bottom: 2rem;
+}
+
+h2 {
+  font-weight: 600;
+  color: #212529;
+  margin-bottom: 1.5rem;
+}
+
+/* Profile image styles */
+.profile-image {
+  border: 5px solid #fff;
+  transition: transform 0.3s ease;
+}
+
+.profile-image:hover {
+  transform: scale(1.05);
+}
+
+/* General card styles */
+.card {
+  border: none;
+  overflow: hidden;
+}
+
+/* Project card specific styles */
+.project-card {
+  border-radius: 8px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Card inner container for horizontal layout */
+.card-inner-container {
+  display: flex;
+  height: 100%;
+  padding: 15px;
+}
+
+.project-image-wrapper {
+  width: 100px;
+  min-width: 100px;
+  height: 100px;
+  margin-right: 15px;
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.card-content {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  flex: 1;
+}
+
+.project-image-horizontal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.project-card:hover .project-image-horizontal {
+  transform: scale(1.1);
+}
+
+/* Small text for project descriptions */
+.small-text {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 0.5rem;
+}
+
+/* Modal styles */
+.modal-content {
+  border-radius: 0.5rem;
+  border: none;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.modal-header, .modal-footer {
+  border: none;
+}
+
+/* Badge styles */
+.badge {
+  font-weight: 500;
+  padding: 0.5rem 0.8rem;
+  border-radius: 50rem;
+}
+
+/* Project detail carousel */
+.project-carousel {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.carousel-control-prev, .carousel-control-next {
+  background-color: rgba(0, 0, 0, 0.3);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.carousel-control-prev {
+  left: 10px;
+}
+
+.carousel-control-next {
+  right: 10px;
+}
+
+/* List group styles */
+.list-group-item {
+  background-color: transparent;
+  border-left: none;
+  border-right: none;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100% !important;
+    height: auto !important;
+    position: static !important;
+  }
+  
+  .sidebar .nav {
+    flex-direction: row !important;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .sidebar .nav-link {
+    padding: 0.5rem 1rem;
+  }
+  
+  main {
+    margin-left: 0 !important;
+    width: 100% !important;
+  }
+  
+  .project-image-wrapper {
+    width: 80px;
+    min-width: 80px;
+    height: 80px;
+  }
+}
+
+/* Education card styles */
+#education .card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border-radius: 8px;
+}
+
+#education .card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
+}
+
+#education .btn {
+  transition: all 0.2s ease;
+}
+
+#education .btn:hover {
+  background-color: #343a40;
   color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }

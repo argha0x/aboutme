@@ -5,9 +5,28 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+/* Remove outline on focused elements */
+:focus {
+  outline: none;
+}
+
+/* Smooth scrolling for all anchor links */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Improve mobile responsiveness */
+@media (max-width: 768px) {
+  main > div.container {
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+  }
 }
