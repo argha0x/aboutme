@@ -1,50 +1,32 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Row, Col, Badge, Button, Carousel } from 'react-bootstrap';
+import { Container, Row, Col, Badge, Button } from 'react-bootstrap';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import projectsData from './ProjectsData';
+import projectsData from '../data/ProjectsData';
 
 const ProjectDetail = () => {
   const { projectId } = useParams();
   const navigate = useNavigate();
   const [project, setProject] = useState(null);
-
-  // Sample additional images for each project (in a real app, these would be part of project data)
-  const additionalImages = {
-    'ml-framework': [
-      'https://images.unsplash.com/photo-1527474305487-b87b222841cc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80',
-      'https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80',
-    ],
-    'ecommerce': [
-      'https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80',
-      'https://images.unsplash.com/photo-1556742031-c6961e8560b0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80',
-    ],
-    'data-viz': [
-      'https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80',
-      'https://images.unsplash.com/photo-1522542550221-31fd19575a2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80',
-    ],
-    'fitness-app': [
-      'https://images.unsplash.com/photo-1595078475328-1ab05d0a6a0e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80',
-      'https://images.unsplash.com/photo-1594882645126-14020914d58d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80',
-    ],
-    'iot-home': [
-      'https://images.unsplash.com/photo-1585771724684-38269d6639fd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80',
-      'https://images.unsplash.com/photo-1565227480671-5ad00328a29c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80',
-    ],
-    'blockchain': [
-      'https://images.unsplash.com/photo-1639322537228-f710d846310a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80',
-      'https://images.unsplash.com/photo-1639322537176-7ef2bc1667a8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80',
-    ],
-  };
+  const [legacyProject, setLegacyProject] = useState(false);
 
   useEffect(() => {
     if (projectId) {
-      const id = projectId.split('/').pop();
-      const foundProject = projectsData.find(p => p.link.includes(id));
+      // Try to find by slug first
+      let foundProject = projectsData.find(p => p.slug === projectId);
+      
+      // If not found by slug, try to find by ID (for legacy data)
+      if (!foundProject) {
+        foundProject = projectsData.find(p => p.id.toString() === projectId);
+        if (foundProject) {
+          setLegacyProject(true);
+        }
+      }
+      
       if (foundProject) {
         setProject(foundProject);
       } else {
         // Redirect to projects if not found
-        navigate('/');
+        navigate('/#projects');
       }
     }
   }, [projectId, navigate]);
@@ -52,17 +34,70 @@ const ProjectDetail = () => {
   if (!project) {
     return (
       <Container className="py-5">
-        <h2>Loading project...</h2>
+        <div className="text-center">
+          <h2>Loading project...</h2>
+          <p>If this persists, the project may not exist.</p>
+        </div>
       </Container>
     );
   }
 
-  // Extract ID from link
-  const projectIdFromLink = project.link.split('/').pop();
-  const images = [project.image, ...(additionalImages[projectIdFromLink] || [])];
+  // Handle legacy project data format
+  if (legacyProject) {
+    return (
+      <Container className="py-4">
+        <Row className="mb-4">
+          <Col>
+            <Link to="/#projects" className="btn btn-outline-secondary mb-4">
+              <i className="bi bi-arrow-left me-2"></i>Back to Projects
+            </Link>
+          </Col>
+        </Row>
 
+        <Row className="mb-4">
+          <Col>
+            <h1 className="border-bottom pb-2 mb-4">{project.title}</h1>
+          </Col>
+        </Row>
+
+        <Row className="mb-4">
+          <Col>
+            <img
+              src={project.image}
+              alt={project.title}
+              className="img-fluid rounded shadow-sm w-100"
+              style={{ maxHeight: '500px', objectFit: 'cover' }}
+            />
+          </Col>
+        </Row>
+
+        <Row>
+          <Col lg={8}>
+            <div className="mb-4">
+              <h3 className="mb-3">Project Overview</h3>
+              <p className="lead">{project.description}</p>
+              <div className="my-3">
+                {project.technologies.map((tech, index) => (
+                  <Badge bg="secondary" className="me-2 mb-2" key={index}>
+                    {tech}
+                  </Badge>
+                ))}
+              </div>
+            </div>
+
+            <div className="mb-4">
+              <h3 className="mb-3">Details</h3>
+              <p>{project.longDescription}</p>
+            </div>
+          </Col>
+        </Row>
+      </Container>
+    );
+  }
+
+  // New project data format
   return (
-    <Container className="py-5">
+    <Container className="py-4">
       <Row className="mb-4">
         <Col>
           <Link to="/#projects" className="btn btn-outline-secondary mb-4">
@@ -73,77 +108,146 @@ const ProjectDetail = () => {
 
       <Row className="mb-4">
         <Col>
-          <h1 className="border-bottom pb-2 mb-4">{project.title}</h1>
+          <h1 className="border-bottom pb-2 mb-4">{project.snippet.title}</h1>
+        </Col>
+      </Row>
+
+      {/* Main project image */}
+      <Row className="mb-4">
+        <Col>
+          <img
+            src={project.details.images[0].src}
+            alt={project.details.images[0].alt}
+            className="img-fluid rounded shadow-sm w-100"
+            style={{ maxHeight: '500px', objectFit: 'cover' }}
+          />
         </Col>
       </Row>
 
       <Row className="mb-5">
         <Col lg={8}>
-          <Carousel className="mb-4 project-carousel shadow">
-            {images.map((image, index) => (
-              <Carousel.Item key={index}>
-                <img
-                  className="d-block w-100"
-                  src={image}
-                  alt={`${project.title} - slide ${index + 1}`}
-                  style={{ height: '400px', objectFit: 'cover' }}
-                />
-              </Carousel.Item>
-            ))}
-          </Carousel>
-        </Col>
-        <Col lg={4}>
-          <div className="p-4 bg-light rounded shadow-sm">
-            <h4 className="mb-3">Project Overview</h4>
-            <p><strong>Project Type:</strong> {project.title.split(' ')[0]}</p>
-            <p><strong>Technologies:</strong></p>
-            <div className="mb-3">
-              {project.technologies.map((tech, index) => (
+          <div className="mb-4">
+            <h3 className="mb-3">Project Overview</h3>
+            <p className="lead">{project.snippet.description}</p>
+            <div className="my-3">
+              {project.snippet.technologies.map((tech, index) => (
                 <Badge bg="secondary" className="me-2 mb-2" key={index}>
                   {tech}
                 </Badge>
               ))}
             </div>
-            <hr />
-            <p><strong>Completed:</strong> 2023</p>
-            <p><strong>Role:</strong> Lead Developer</p>
+          </div>
+
+          <div className="mb-4">
+            <h3 className="mb-3">Details</h3>
+            <p style={{ whiteSpace: 'pre-line' }}>{project.details.fullDescription}</p>
+          </div>
+
+          <div className="mb-4">
+            <h3 className="mb-3">Key Features</h3>
+            <ul className="list-group list-group-flush">
+              {project.details.features.map((feature, index) => (
+                <li className="list-group-item" key={index}>{feature}</li>
+              ))}
+            </ul>
+          </div>
+
+          {project.details.challenges && (
+            <div className="mb-4">
+              <h3 className="mb-3">Challenges & Solutions</h3>
+              <p style={{ whiteSpace: 'pre-line' }}>{project.details.challenges}</p>
+            </div>
+          )}
+
+          {project.details.outcome && (
+            <div className="mb-4">
+              <h3 className="mb-3">Outcome</h3>
+              <p style={{ whiteSpace: 'pre-line' }}>{project.details.outcome}</p>
+            </div>
+          )}
+        </Col>
+        
+        <Col lg={4}>
+          <div className="p-4 bg-light rounded shadow-sm mb-4">
+            <h4 className="mb-3">Project Information</h4>
+            <p><strong>Role:</strong> {project.details.role}</p>
+            <p><strong>Completed:</strong> {project.details.completionDate}</p>
+            
+            {project.details.links && (
+              <div className="mt-4">
+                <h5 className="mb-2">Project Links</h5>
+                {project.details.links.github && (
+                  <p><a href={project.details.links.github} target="_blank" rel="noopener noreferrer" className="text-decoration-none">
+                    <i className="bi bi-github me-2"></i>GitHub Repository
+                  </a></p>
+                )}
+                {project.details.links.live && (
+                  <p><a href={project.details.links.live} target="_blank" rel="noopener noreferrer" className="text-decoration-none">
+                    <i className="bi bi-globe me-2"></i>Live Demo
+                  </a></p>
+                )}
+                {project.details.links.documentation && (
+                  <p><a href={project.details.links.documentation} target="_blank" rel="noopener noreferrer" className="text-decoration-none">
+                    <i className="bi bi-file-text me-2"></i>Documentation
+                  </a></p>
+                )}
+                {project.details.links.case_study && (
+                  <p><a href={project.details.links.case_study} target="_blank" rel="noopener noreferrer" className="text-decoration-none">
+                    <i className="bi bi-journal me-2"></i>Case Study
+                  </a></p>
+                )}
+                {project.details.links.blog && (
+                  <p><a href={project.details.links.blog} target="_blank" rel="noopener noreferrer" className="text-decoration-none">
+                    <i className="bi bi-pencil me-2"></i>Blog Post
+                  </a></p>
+                )}
+              </div>
+            )}
           </div>
         </Col>
       </Row>
 
-      <Row className="mb-5">
-        <Col>
-          <h3 className="mb-3">Project Description</h3>
-          <p className="lead mb-4">{project.description}</p>
-          <p>{project.longDescription}</p>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam at metus in nisi consequat 
-            vestibulum. Vivamus vel felis vel magna tincidunt faucibus. Sed euismod lectus ac leo ultricies, 
-            vel malesuada turpis sollicitudin. In hac habitasse platea dictumst.
-          </p>
-        </Col>
-      </Row>
+      {/* Additional Project Images */}
+      {project.details.images.length > 1 && (
+        <div className="project-gallery-container mb-5">
+          <h3 className="mb-4">Project Gallery</h3>
+          <Row>
+            {project.details.images.slice(1).map((image, index) => (
+              <Col md={6} lg={4} xl={3} key={index}>
+                <div className="project-gallery-item">
+                  <div className="project-gallery-image-wrapper">
+                    <img 
+                      src={image.src} 
+                      alt={image.alt}
+                      className="project-gallery-image"
+                    />
+                  </div>
+                  <div className="project-gallery-caption">
+                    {image.alt}
+                  </div>
+                </div>
+              </Col>
+            ))}
+          </Row>
+        </div>
+      )}
 
-      <Row className="mb-5">
-        <Col>
-          <h3 className="mb-3">Features</h3>
-          <ul className="list-group list-group-flush">
-            <li className="list-group-item">Feature 1: Lorem ipsum dolor sit amet</li>
-            <li className="list-group-item">Feature 2: Consectetur adipiscing elit</li>
-            <li className="list-group-item">Feature 3: Nullam at metus in nisi consequat vestibulum</li>
-            <li className="list-group-item">Feature 4: Vivamus vel felis vel magna tincidunt</li>
-            <li className="list-group-item">Feature 5: Sed euismod lectus ac leo ultricies</li>
-          </ul>
-        </Col>
-      </Row>
-
-      <Row>
-        <Col className="text-center">
-          <Button variant="dark" size="lg" href={`https://example.com/${projectIdFromLink}`} target="_blank">
-            Visit Project
-          </Button>
-        </Col>
-      </Row>
+      {/* Call to action */}
+      {project.details.links && project.details.links.live && (
+        <Row>
+          <Col className="text-center mb-5">
+            <Button 
+              variant="dark" 
+              size="lg" 
+              href={project.details.links.live} 
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Visit Project
+            </Button>
+          </Col>
+        </Row>
+      )}
     </Container>
   );
 };

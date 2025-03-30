@@ -3,7 +3,6 @@ import { Nav, Navbar, Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import ThemeToggle from './ThemeToggle';
 
 const Sidebar = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
@@ -82,12 +81,7 @@ const Sidebar = () => {
       <Navbar bg="white" expand="lg" className="mb-4 shadow-sm">
         <Container>
           <Navbar.Brand as={Link} to="/" className="fw-bold">Argha Chakraborty</Navbar.Brand>
-          <div className="d-flex align-items-center">
-            <div className="mobile-theme-toggle me-3">
-              <ThemeToggle id="mobile-theme-toggle" />
-            </div>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          </div>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">
               {mainLinks.map(link => (

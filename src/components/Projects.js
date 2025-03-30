@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import projectsData from './ProjectsData';
+import projectsData from '../data/ProjectsData';
 
 const Projects = () => {
   return (
@@ -14,22 +14,22 @@ const Projects = () => {
               <div className="card-inner-container">
                 <div className="project-image-wrapper">
                   <Card.Img 
-                    src={project.image} 
-                    alt={project.title}
+                    src={project.snippet?.thumbnailImage || project.image} 
+                    alt={project.snippet?.title || project.title}
                     className="project-image-horizontal"
                   />
                 </div>
                 <div className="card-content">
-                  <Card.Title className="mb-1 fs-6">{project.title}</Card.Title>
-                  <Card.Text className="small-text mb-1">{project.description}</Card.Text>
+                  <Card.Title className="mb-1 fs-6">{project.snippet?.title || project.title}</Card.Title>
+                  <Card.Text className="small-text mb-1">{project.snippet?.description || project.description}</Card.Text>
                   <div className="mb-2">
-                    {project.technologies.map((tech, index) => (
-                      <span key={index} className="badge me-1 mb-1">{tech}</span>
+                    {(project.snippet?.technologies || project.technologies).map((tech, index) => (
+                      <span key={index} className="badge me-1 mb-1 small">{tech}</span>
                     ))}
                   </div>
                   <div className="mt-auto">
                     <Link 
-                      to={`/${project.link}`} 
+                      to={`/project/${project.slug || project.id}`} 
                       className="btn btn-sm btn-outline-dark" 
                     >
                       View Project
