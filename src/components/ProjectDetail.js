@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Row, Col, Badge, Button } from 'react-bootstrap';
+import { Container, Row, Col, Badge, Button, Modal, Carousel } from 'react-bootstrap';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import projectsData from '../data/ProjectsData';
 
@@ -8,6 +8,8 @@ const ProjectDetail = () => {
   const navigate = useNavigate();
   const [project, setProject] = useState(null);
   const [legacyProject, setLegacyProject] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
     if (projectId) {
@@ -30,6 +32,15 @@ const ProjectDetail = () => {
       }
     }
   }, [projectId, navigate]);
+
+  const handleImageClick = (index) => {
+    setActiveIndex(index);
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
 
   if (!project) {
     return (
@@ -60,17 +71,6 @@ const ProjectDetail = () => {
           </Col>
         </Row>
 
-        <Row className="mb-4">
-          <Col>
-            <img
-              src={project.image}
-              alt={project.title}
-              className="img-fluid rounded shadow-sm w-100"
-              style={{ maxHeight: '500px', objectFit: 'cover' }}
-            />
-          </Col>
-        </Row>
-
         <Row>
           <Col lg={8}>
             <div className="mb-4">
@@ -95,9 +95,64 @@ const ProjectDetail = () => {
     );
   }
 
+  // Ensure we have valid images before rendering the carousel
+  const images = project.details.images || [];
+  const hasImages = images.length > 0;
+
+  // Image modal with carousel
+  const imageModal = (
+    <Modal 
+      show={showModal && hasImages} 
+      onHide={handleCloseModal} 
+      size="lg" 
+      centered
+      contentClassName="carousel-modal-content"
+    >
+      <Modal.Header closeButton>
+        <Modal.Title>{project.snippet.title} - Gallery</Modal.Title>
+      </Modal.Header>
+      <Modal.Body className="p-0">
+        {hasImages && (
+          <Carousel
+            activeIndex={activeIndex}
+            onSelect={(index) => setActiveIndex(index)}
+            interval={null}
+            indicators={images.length > 1}
+            controls={images.length > 1}
+            className="project-carousel"
+            wrap={true}
+          >
+            {images.map((image, index) => (
+              <Carousel.Item key={index}>
+                <div className="carousel-image-container">
+                  <img
+                    className="carousel-image"
+                    src={image.src || "#"}
+                    alt={image.alt || "Project image"}
+                    onError={(e) => {
+                      e.target.onerror = null;
+                      e.target.src = "https://via.placeholder.com/800x600?text=Image+Not+Available";
+                    }}
+                  />
+                </div>
+                {image.alt && (
+                  <Carousel.Caption className="carousel-caption-custom">
+                    <p>{image.alt}</p>
+                  </Carousel.Caption>
+                )}
+              </Carousel.Item>
+            ))}
+          </Carousel>
+        )}
+      </Modal.Body>
+    </Modal>
+  );
+
   // New project data format
   return (
     <Container className="py-4">
+      {imageModal}
+      
       <Row className="mb-4">
         <Col>
           <Link to="/#projects" className="btn btn-outline-secondary mb-4">
@@ -109,18 +164,6 @@ const ProjectDetail = () => {
       <Row className="mb-4">
         <Col>
           <h1 className="border-bottom pb-2 mb-4">{project.snippet.title}</h1>
-        </Col>
-      </Row>
-
-      {/* Main project image */}
-      <Row className="mb-4">
-        <Col>
-          <img
-            src={project.details.images[0].src}
-            alt={project.details.images[0].alt}
-            className="img-fluid rounded shadow-sm w-100"
-            style={{ maxHeight: '500px', objectFit: 'cover' }}
-          />
         </Col>
       </Row>
 
@@ -207,23 +250,31 @@ const ProjectDetail = () => {
         </Col>
       </Row>
 
-      {/* Additional Project Images */}
-      {project.details.images.length > 1 && (
+      {/* Project Gallery - all images, including the first one */}
+      {hasImages && (
         <div className="project-gallery-container mb-5">
           <h3 className="mb-4">Project Gallery</h3>
           <Row>
-            {project.details.images.slice(1).map((image, index) => (
+            {images.map((image, index) => (
               <Col md={6} lg={4} xl={3} key={index}>
-                <div className="project-gallery-item">
+                <div 
+                  className="project-gallery-item" 
+                  onClick={() => handleImageClick(index)}
+                  style={{ cursor: 'pointer' }}
+                >
                   <div className="project-gallery-image-wrapper">
                     <img 
                       src={image.src} 
-                      alt={image.alt}
+                      alt={image.alt || "Project image"}
                       className="project-gallery-image"
+                      onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.src = "https://via.placeholder.com/400x300?text=Image+Not+Available";
+                      }}
                     />
                   </div>
                   <div className="project-gallery-caption">
-                    {image.alt}
+                    {image.alt || "Project image"}
                   </div>
                 </div>
               </Col>

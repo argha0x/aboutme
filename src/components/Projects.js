@@ -9,7 +9,7 @@ const Projects = () => {
       <h2 className="border-bottom pb-2 mb-3">Projects</h2>
       <Row>
         {projectsData.map(project => (
-          <Col md={4} className="mb-3" key={project.id}>
+          <Col xs={12} md={6} lg={4} className="mb-3" key={project.id}>
             <Card className="h-100 shadow-sm project-card">
               <div className="card-inner-container">
                 <div className="project-image-wrapper">
@@ -20,9 +20,9 @@ const Projects = () => {
                   />
                 </div>
                 <div className="card-content">
-                  <Card.Title className="mb-1 fs-6">{project.snippet?.title || project.title}</Card.Title>
+                  <Card.Title className="mb-1 fs-6 project-title">{project.snippet?.title || project.title}</Card.Title>
                   <Card.Text className="small-text mb-1">{project.snippet?.description || project.description}</Card.Text>
-                  <div className="mb-2">
+                  <div className="badge-container">
                     {(project.snippet?.technologies || project.technologies).map((tech, index) => (
                       <span key={index} className="badge me-1 mb-1 small">{tech}</span>
                     ))}
