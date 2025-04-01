@@ -10,6 +10,7 @@ import Experience from './components/Experience';
 import Education from './components/Education';
 import Publications from './components/Publications';
 import Contact from './components/Contact';
+import Schedule from './components/Schedule';
 import ProjectDetail from './components/ProjectDetail';
 import ScrollToSection from './components/ScrollToSection';
 
@@ -22,6 +23,7 @@ const HomePage = () => (
     <Experience />
     <Publications />
     <Contact />
+    <Schedule />
   </>
 );
 

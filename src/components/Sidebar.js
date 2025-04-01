@@ -15,7 +15,8 @@ const Sidebar = () => {
     { id: 'projects', title: 'Projects', icon: 'bi-code-square' },
     { id: 'experience', title: 'Work Experience', icon: 'bi-briefcase' },
     { id: 'publications', title: 'Publications', icon: 'bi-journal-text' },
-    { id: 'contact', title: 'Contact', icon: 'bi-envelope' }
+    { id: 'contact', title: 'Contact', icon: 'bi-envelope' },
+    { id: 'schedule', title: 'Schedule', icon: 'bi-calendar-check' }
   ], []);
 
   useEffect(() => {

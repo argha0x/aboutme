@@ -11,6 +11,32 @@ const About = () => {
   const headGroupRef = useRef(null);
   const [showCanvas, setShowCanvas] = useState(false);
   
+  // Add Calendly popup handler
+  useEffect(() => {
+    // Load Calendly widget script
+    const script = document.createElement('script');
+    script.src = 'https://assets.calendly.com/assets/external/widget.js';
+    script.async = true;
+    document.body.appendChild(script);
+
+    // Initialize Calendly
+    window.Calendly = window.Calendly || {};
+    window.Calendly.initInlineWidget = function(element) {
+      if (window.Calendly) {
+        window.Calendly.initInlineWidget({
+          url: 'https://calendly.com/rghchaks73',
+          parentElement: element,
+          prefill: {},
+          utm: {}
+        });
+      }
+    };
+
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
   useEffect(() => {
     if (!canvasRef.current) return;
     
