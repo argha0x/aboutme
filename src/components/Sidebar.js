@@ -26,50 +26,70 @@ const Sidebar = () => {
     
     window.addEventListener('resize', handleResize);
     
-    // Completely revised scroll detection approach
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      const viewportHeight = window.innerHeight;
-      
-      // Check each section in reverse order (bottom to top)
-      // This ensures we highlight the correct section when scrolling down
-      for (let i = mainLinks.length - 1; i >= 0; i--) {
-        const sectionId = mainLinks[i].id;
-        const section = document.getElementById(sectionId);
+    // Add a small delay before starting scroll detection
+    const scrollTimeout = setTimeout(() => {
+      const handleScroll = () => {
+        const scrollPosition = window.scrollY;
+        const viewportHeight = window.innerHeight;
         
-        if (section) {
-          const rect = section.getBoundingClientRect();
+        // If we're at the top of the page, highlight About Me
+        if (scrollPosition < 100) {
+          setActiveLink('about');
+          return;
+        }
+        
+        // Check each section in reverse order (bottom to top)
+        for (let i = mainLinks.length - 1; i >= 0; i--) {
+          const sectionId = mainLinks[i].id;
+          const section = document.getElementById(sectionId);
           
-          // If a significant portion of the section is visible, mark it as active
-          // For the last section (Schedule), be more lenient with detection
-          if (sectionId === 'schedule') {
-            if (rect.top < viewportHeight && rect.bottom > 0) {
-              setActiveLink(sectionId);
-              break;
-            }
-          } else {
-            // For other sections, require at least 30% visibility
-            const visibleHeight = Math.min(rect.bottom, viewportHeight) - Math.max(rect.top, 0);
-            const visiblePercentage = visibleHeight / rect.height;
+          if (section) {
+            const rect = section.getBoundingClientRect();
+            const sectionTop = rect.top + window.scrollY;
+            const sectionBottom = rect.bottom + window.scrollY;
             
-            if (visiblePercentage > 0.3) {
-              setActiveLink(sectionId);
-              break;
+            // For the last section (Schedule), be more lenient with detection
+            if (sectionId === 'schedule') {
+              if (rect.top < viewportHeight && rect.bottom > 0) {
+                setActiveLink(sectionId);
+                break;
+              }
+            } else {
+              // For other sections, check if the section is in view
+              // and if we've scrolled past its top position
+              const isInView = rect.top < viewportHeight * 0.5;
+              const hasScrolledPast = scrollPosition >= sectionTop - 100;
+              const isLastSection = sectionId === 'contact';
+              
+              // For the Contact section, be more lenient with detection
+              if (isLastSection) {
+                if (rect.top < viewportHeight * 0.7 || scrollPosition >= sectionTop - 50) {
+                  setActiveLink(sectionId);
+                  break;
+                }
+              } else if (isInView && hasScrolledPast) {
+                setActiveLink(sectionId);
+                break;
+              }
             }
           }
         }
-      }
-    };
-    
-    // Run handleScroll on initial load
-    handleScroll();
-    
-    // Add event listener for scrolling
-    window.addEventListener('scroll', handleScroll);
+      };
+      
+      // Run handleScroll on initial load
+      handleScroll();
+      
+      // Add event listener for scrolling
+      window.addEventListener('scroll', handleScroll);
+      
+      return () => {
+        window.removeEventListener('scroll', handleScroll);
+      };
+    }, 500); // 500ms delay before starting scroll detection
     
     return () => {
+      clearTimeout(scrollTimeout);
       window.removeEventListener('resize', handleResize);
-      window.removeEventListener('scroll', handleScroll);
     };
   }, [mainLinks]);
 

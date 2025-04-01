@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { Container, Row, Col, Badge, Button, Modal, Carousel } from 'react-bootstrap';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import projectsData from '../data/ProjectsData';
+import { FaTimes, FaChevronLeft, FaChevronRight, FaExpand } from 'react-icons/fa';
+import 'bootstrap/dist/css/bootstrap.min.css';
+// import '../styles/Gallery.css';
 
 const ProjectDetail = () => {
   const { projectId } = useParams();
@@ -10,6 +13,7 @@ const ProjectDetail = () => {
   const [legacyProject, setLegacyProject] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
     if (projectId) {
@@ -40,6 +44,18 @@ const ProjectDetail = () => {
 
   const handleCloseModal = () => {
     setShowModal(false);
+  };
+
+  const handlePrevious = () => {
+    setCurrentIndex((prevIndex) => 
+      prevIndex === 0 ? project.images.length - 1 : prevIndex - 1
+    );
+  };
+
+  const handleNext = () => {
+    setCurrentIndex((prevIndex) => 
+      prevIndex === project.images.length - 1 ? 0 : prevIndex + 1
+    );
   };
 
   if (!project) {
@@ -101,9 +117,9 @@ const ProjectDetail = () => {
 
   // Image modal with carousel
   const imageModal = (
-    <Modal 
-      show={showModal && hasImages} 
-      onHide={handleCloseModal} 
+    <Modal
+      show={showModal && hasImages}
+      onHide={handleCloseModal}
       size="lg" 
       centered
       contentClassName="carousel-modal-content"
