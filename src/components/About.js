@@ -13,7 +13,12 @@ const About = () => {
   
   // Add Calendly popup handler
   useEffect(() => {
-    // Load Calendly widget script
+    // Load Calendly widget script and styles
+    const link = document.createElement('link');
+    link.href = 'https://assets.calendly.com/assets/external/widget.css';
+    link.rel = 'stylesheet';
+    document.head.appendChild(link);
+
     const script = document.createElement('script');
     script.src = 'https://assets.calendly.com/assets/external/widget.js';
     script.async = true;
@@ -33,6 +38,7 @@ const About = () => {
     };
 
     return () => {
+      document.head.removeChild(link);
       document.body.removeChild(script);
     };
   }, []);
@@ -426,12 +432,24 @@ const About = () => {
             of GPUs for applications ranging from scientific simulations to interactive graphics and
             deep learning acceleration.
           </p>
-          <div className="mt-3">
-            <a href="#contact" className="btn btn-outline-dark me-2">
+          <div className="mt-3 d-flex flex-column flex-md-row gap-2 gap-md-3">
+            <a href="#contact" className="btn btn-outline-dark">
               Get In Touch
             </a>
             <a href="#projects" className="btn btn-dark">
               View My Work
+            </a>
+            <a 
+              href="#" 
+              onClick={(e) => {
+                e.preventDefault();
+                if (window.Calendly) {
+                  window.Calendly.initPopupWidget({ url: 'https://calendly.com/rghchaks73' });
+                }
+              }}
+              className="btn btn-primary"
+            >
+              Schedule Meeting
             </a>
           </div>
         </Col>
