@@ -26,24 +26,37 @@ const Sidebar = () => {
     
     window.addEventListener('resize', handleResize);
     
-    // Improved scroll detection with better handling for last section
+    // Completely revised scroll detection approach
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
-      const windowHeight = window.innerHeight;
-      const documentHeight = document.documentElement.scrollHeight;
+      const viewportHeight = window.innerHeight;
       
-      // If we're at the bottom of the page, highlight the last link (contact)
-      if (scrollPosition + windowHeight >= documentHeight - 50) {
-        setActiveLink('contact');
-        return;
-      }
-      
-      // Otherwise determine which section is in view
+      // Check each section in reverse order (bottom to top)
+      // This ensures we highlight the correct section when scrolling down
       for (let i = mainLinks.length - 1; i >= 0; i--) {
-        const section = document.getElementById(mainLinks[i].id);
-        if (section && section.offsetTop <= scrollPosition + 200) {
-          setActiveLink(mainLinks[i].id);
-          break;
+        const sectionId = mainLinks[i].id;
+        const section = document.getElementById(sectionId);
+        
+        if (section) {
+          const rect = section.getBoundingClientRect();
+          
+          // If a significant portion of the section is visible, mark it as active
+          // For the last section (Schedule), be more lenient with detection
+          if (sectionId === 'schedule') {
+            if (rect.top < viewportHeight && rect.bottom > 0) {
+              setActiveLink(sectionId);
+              break;
+            }
+          } else {
+            // For other sections, require at least 30% visibility
+            const visibleHeight = Math.min(rect.bottom, viewportHeight) - Math.max(rect.top, 0);
+            const visiblePercentage = visibleHeight / rect.height;
+            
+            if (visiblePercentage > 0.3) {
+              setActiveLink(sectionId);
+              break;
+            }
+          }
         }
       }
     };
@@ -119,8 +132,6 @@ const Sidebar = () => {
   // Desktop Sidebar
   return (
     <div className="sidebar d-flex flex-column flex-shrink-0 p-3 shadow-sm" style={{ width: '280px', height: '100vh', position: 'fixed' }}>
-
-      
       <Nav className="flex-column sidebar-nav">
         {mainLinks.map(link => (
           <Nav.Link 
