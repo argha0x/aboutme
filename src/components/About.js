@@ -406,6 +406,24 @@ const About = () => {
         </Col>
         <Col md={8}>
           <h2 className="mb-3">Argha Chakraborty</h2>
+          <div className="mb-3" style={{ 
+            display: 'inline-flex', 
+            alignItems: 'center', 
+            background: '#a1a1a1', 
+            padding: '4px 12px',
+            borderRadius: '20px',
+            boxShadow: '0 2px 5px rgba(0,0,0,0.1)'
+          }}>
+            <i className="bi bi-envelope-fill me-2" style={{ color: 'white' }}></i>
+            <a href="mailto:rghchaks73@gmail.com" style={{ 
+              color: 'white', 
+              textDecoration: 'none', 
+              fontWeight: '500', 
+              letterSpacing: '0.5px' 
+            }}>
+              rghchaks73@gmail.com
+            </a>
+          </div>
           <p className="lead">
           Visual Computing | GPU Programming | 3D Rendering | Image & Mesh Processing | Vision</p>
           <p>
