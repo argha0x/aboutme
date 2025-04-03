@@ -425,7 +425,7 @@ const About = () => {
             </a>
           </div>
           <p className="lead">
-          Visual Computing | GPU Programming | 3D Rendering | Image & Mesh Processing | Vision</p>
+          Shaders | 3D Rendering | Physics Based Animation | Image & Mesh Processing | Vision</p>
           <p>
               I operate at the crossroads of <span class="fw-bold text-primary">engineering</span> and <span class="fw-bold text-primary">research</span> to push the boundaries of visual computing combining expertise in 
               3D rendering, physics-based animation, and image processing. Whether it's accelerating 
@@ -442,7 +442,7 @@ const About = () => {
           <p>
               Outside the lab, you'll find me indulging my creative passions—playing classical guitar, practicing piano, or honing my fine-art skills. 
               These artistic pursuits keep me curious and imaginative, fueling my enthusiasm for the latest developments in computer graphics, computer vision, and AI. 
-              I avidly follow top-tier conferences to stay ahead of the curve, and I'm always eager to collaborate on forward-thinking projects that merge science and artistry in the world of visual computing.
+              I avidly follow top-tier conferences like SIGGRAPH, CVPR, ICML, I3D, AAAI and journals, to stay ahead of the curve, and I'm always eager to collaborate on forward-thinking projects that merge engineering and research in the world of visual computing.
           </p>
           <div className="mt-3 d-flex gap-2 flex-wrap">
             <a href="/aboutme/ArghaApr.pdf" download className="btn btn-outline-dark flex-grow-1 flex-md-grow-0">

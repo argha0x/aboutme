@@ -103,12 +103,12 @@ const Experience = () => {
 
   return (
     <Container id="experience" className="py-5">
-      <div className="d-flex justify-content-between align-items-center mb-4">
+      <div className="d-flex flex-column flex-md-row justify-content-md-between align-items-md-center gap-3 mb-5">
         <h2 className="border-bottom pb-2 mb-0">Work Experience</h2>
-        <div className="d-flex align-items-center bg-light p-2 rounded-3">
-          <FaHistory className="text-primary me-2" />
-          <span className="fw-bold">
-            {experienceTime.years} years, {experienceTime.months} months, {experienceTime.days} days
+        <div className="d-flex align-items-center bg-primary bg-opacity-10 p-3 rounded-4 shadow-sm">
+          <FaHistory className="text-primary me-3 fs-5" />
+          <span className="fw-semibold">
+            {experienceTime.years} years, {experienceTime.months}months, {experienceTime.days} days
           </span>
         </div>
       </div>
