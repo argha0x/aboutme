@@ -221,25 +221,12 @@ const About = () => {
     const mouthGeometry = new THREE.BufferGeometry().setFromPoints(mouthPoints);
     const mouthMaterial = new THREE.LineBasicMaterial({ 
       color: 0x993333,
-      linewidth: 10
+      linewidth: 20
     });
     const mouth = new THREE.Line(mouthGeometry, mouthMaterial);
     headGroup.add(mouth); // Add mouth to head
     
-    // Add small dimples on the sides for a happier expression
-    const dimpleGeometry = new THREE.SphereGeometry(0.05, 16, 16);
-    const dimpleMaterial = new THREE.MeshPhongMaterial({
-      color: 0xe5b39e,
-      shininess: 20
-    });
-    
-    const leftDimple = new THREE.Mesh(dimpleGeometry, dimpleMaterial);
-    leftDimple.position.set(-0.6, -0.4, 0.9);
-    headGroup.add(leftDimple);
-    
-    const rightDimple = new THREE.Mesh(dimpleGeometry, dimpleMaterial);
-    rightDimple.position.set(0.6, -0.4, 0.9);
-    headGroup.add(rightDimple);
+
     
     // Add hair strands for more detail
     // Create a curve for the first hair strand
@@ -432,11 +419,11 @@ const About = () => {
             of GPUs for applications ranging from scientific simulations to interactive graphics and
             deep learning acceleration.
           </p>
-          <div className="mt-3 d-flex flex-column flex-md-row gap-2 gap-md-3">
-            <a href="#contact" className="btn btn-outline-dark">
+          <div className="mt-3 d-flex gap-2 flex-wrap">
+            <a href="#contact" className="btn btn-outline-dark flex-grow-1 flex-md-grow-0">
               Get In Touch
             </a>
-            <a href="#projects" className="btn btn-dark">
+            <a href="#projects" className="btn btn-dark flex-grow-1 flex-md-grow-0">
               View My Work
             </a>
             <a 
@@ -447,7 +434,7 @@ const About = () => {
                   window.Calendly.initPopupWidget({ url: 'https://calendly.com/rghchaks73' });
                 }
               }}
-              className="btn btn-primary"
+              className="btn btn-primary flex-grow-1 flex-md-grow-0"
             >
               Schedule Meeting
             </a>
