@@ -12,16 +12,13 @@ const ThemeToggle = ({ id = "theme-toggle" }) => {
   // On component mount, check if user already has a theme preference
   useEffect(() => {
     const savedTheme = localStorage.getItem('portfolio-theme');
-    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
     
-    // If there's a saved theme, use it; otherwise use system preference
+    // If there's a saved theme, use it; otherwise default to light mode
     if (savedTheme) {
       setIsDarkMode(savedTheme === 'dark');
       applyTheme(savedTheme);
-    } else if (prefersDark) {
-      setIsDarkMode(true);
-      applyTheme('dark');
     } else {
+      setIsDarkMode(false);
       applyTheme('light');
     }
 
