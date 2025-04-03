@@ -10,21 +10,22 @@ const Contact = () => {
           <h4>Get In Touch</h4>
           <p>Feel free to reach out if you have any questions or would like to discuss potential collaborations.</p>
           <div className="mb-3">
-            <strong>Email:</strong> <a href="mailto:contact@example.com">contact@example.com</a>
+            <strong>Email:</strong> <a href="mailto:contact@example.com">rghchaks73@gmail.com</a>
           </div>
           <div className="mb-3">
-            <strong>Location:</strong> San Francisco, CA
+            <strong>Location:</strong> Bangalore, KA, India ❤️
           </div>
           <div className="d-flex mt-4">
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="me-3">
+            <a href="https://www.linkedin.com/in/arghachakraborty92/" target="_blank" rel="noopener noreferrer" className="me-3">
               <i className="bi bi-linkedin fs-4"></i>
             </a>
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="me-3">
+            <a href="https://github.com/ricoseeds" target="_blank" rel="noopener noreferrer" className="me-3">
               <i className="bi bi-github fs-4"></i>
             </a>
-            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="me-3">
-              <i className="bi bi-twitter fs-4"></i>
+            <a href="https://www.youtube.com/@arghachakraborty7088" target="_blank" rel="noopener noreferrer" className="me-3">
+              <i className="bi bi-youtube fs-4"></i>
             </a>
+            
           </div>
         </Col>
         <Col md={6}>

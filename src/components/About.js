@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import { FaDownload } from 'react-icons/fa';
 
 const About = () => {
   const canvasRef = useRef(null);
@@ -379,7 +380,7 @@ const About = () => {
           }}>
             {!showCanvas ? (
               <img 
-                src="https://www.dropbox.com/scl/fi/4j05ei12k1dnq1brjt6j6/tux.png?rlkey=k4ksuow5hnfa4wtoo1xej0ywc&st=ef7hhfb3&raw=1" 
+                src="https://www.dropbox.com/scl/fi/rgrnuihcbdd78kg77ocji/arghaHome.png?rlkey=b6nxn2wmb1pf26ujeubr7v547&st=vak5mb5i&raw=1" 
                 alt="Profile" 
                 style={{ 
                   width: '100%', 
@@ -406,25 +407,18 @@ const About = () => {
         <Col md={8}>
           <h2 className="mb-3">Argha Chakraborty</h2>
           <p className="lead">
-            Experienced GPU Developer with over 20 years of experience specializing in high-performance 
-            graphics programming, CUDA optimization, and parallel computing solutions.
-          </p>
+          Visual Computing | GPU Programming | 3D Rendering | Image & Mesh Processing | Vision</p>
           <p>
-            With a deep understanding of graphics pipelines and GPU architecture, I've developed 
-            cutting-edge visualization tools, real-time rendering systems, and computational algorithms 
-            that push the boundaries of what's possible with modern graphics hardware.
+          I operate at the crossroads of engineering and research to push the boundaries of visual computing—combining hands-on expertise in 3D rendering, physics-based animation, and image processing. Whether it's accelerating real-time graphics performance or driving innovation in machine learning-driven image analysis, I'm passionate about transforming cutting-edge theory into impactful, real-world solutions.
           </p>
+
           <p>
-            I'm passionate about creating efficient, scalable code that harnesses the full potential
-            of GPUs for applications ranging from scientific simulations to interactive graphics and
-            deep learning acceleration.
+          Outside the lab, you'll find me indulging my creative passions—playing classical guitar, practicing piano, or honing my fine-art skills. These artistic pursuits keep me curious and imaginative, fueling my enthusiasm for the latest developments in computer graphics, computer vision, and AI. I avidly follow top-tier conferences to stay ahead of the curve, and I'm always eager to collaborate on forward-thinking projects that bridge the gap between science and artistry in the world of visual computing.
           </p>
+        
           <div className="mt-3 d-flex gap-2 flex-wrap">
-            <a href="#contact" className="btn btn-outline-dark flex-grow-1 flex-md-grow-0">
-              Get In Touch
-            </a>
-            <a href="#projects" className="btn btn-dark flex-grow-1 flex-md-grow-0">
-              View My Work
+            <a href="/aboutme/ArghaApr.pdf" download className="btn btn-outline-dark flex-grow-1 flex-md-grow-0">
+              <FaDownload className="me-2" /> Download Resume
             </a>
             <a 
               href="#" 

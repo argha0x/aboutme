@@ -5,22 +5,33 @@ const Education = () => {
   const educationData = [
     {
       id: 1,
-      degree: 'Master of Science in Computer Science',
-      institution: 'Stanford University',
-      location: 'Stanford, CA',
-      duration: '2017 - 2019',
-      specialization: 'Machine Learning & Artificial Intelligence',
-      description: 'Specialized in machine learning algorithms and deep neural networks. Conducted research on computer vision applications for autonomous systems.',
+      degree: 'MS(R), Information Technology',
+      institution: 'Indian Institute of Technology, Delhi',
+      location: 'Delhi, India',
+      duration: '2024',
+      gpa: 'CGPA: 8.3/10',
+      specialization: 'Computer Graphics, Vision and Physics-Based Animation',
+      description: 'Graduate research in advanced computer graphics techniques and physics-based animation systems.',
       certificateLink: '#'
     },
     {
       id: 2,
-      degree: 'Bachelor of Engineering in Computer Science',
-      institution: 'Massachusetts Institute of Technology',
-      location: 'Cambridge, MA',
-      duration: '2013 - 2017',
-      specialization: 'Software Engineering',
-      description: 'Focused on software design principles, data structures, and algorithmic efficiency. Participated in multiple hackathons and coding competitions.',
+      degree: 'M.Sc, Computer Science',
+      institution: 'Banaras Hindu University',
+      location: 'Varanasi, India',
+      duration: '2014-2016',
+      gpa: 'CGPA: 9.12/10',
+      description: 'Advanced studies in computer science with focus on theoretical and practical applications.',
+      certificateLink: '#'
+    },
+    {
+      id: 3,
+      degree: 'B.Sc, Computer Science (Honors)',
+      institution: 'University of Calcutta',
+      location: 'Kolkata, India',
+      duration: '2011-2014',
+      gpa: 'Percentage: 77/100',
+      description: 'Comprehensive computer science education with honors distinction. Ranked 10th among over 8,000 students university-wide.',
       certificateLink: '#'
     }
   ];
@@ -36,12 +47,15 @@ const Education = () => {
                 <h4 className="mb-1">{edu.degree}</h4>
                 <h5 className="text-secondary mb-2">{edu.institution}, {edu.location}</h5>
                 <p className="text-muted mb-2"><strong>Duration:</strong> {edu.duration}</p>
-                <p className="text-muted mb-3"><strong>Specialization:</strong> {edu.specialization}</p>
+                <p className="text-muted mb-2"><strong>{edu.gpa}</strong></p>
+                {edu.specialization && (
+                  <p className="text-muted mb-3"><strong>Specialization:</strong> {edu.specialization}</p>
+                )}
                 <p>{edu.description}</p>
               </Col>
               <Col md={3} className="d-flex align-items-center justify-content-md-end mt-3 mt-md-0">
                 <a href={edu.certificateLink} className="btn btn-sm btn-outline-dark">
-                  <i className="bi bi-file-earmark-pdf me-2"></i>View Degree
+                  <i className="bi bi-file-earmark-pdf me-2"></i>View Certificate
                 </a>
               </Col>
             </Row>
