@@ -46,7 +46,7 @@ const Experience = () => {
       id: 1,
       role: 'Senior Staff Engineer XR',
       company: 'Stryker',
-      logo: '/aboutme/images/companies/stryker_logo.png',
+      logo: '/aboutme/images/companies/Stryker_logo.svg',
       logoFallback: <FaBuilding className="company-logo-fallback text-primary" />,
       period: 'Sept 2024 - Current',
       description: 'Delivering high-performance visualization and interactive graphics for advanced robotic applications. Working on the visualisation pipeline of Stryker Mako robots.'
@@ -81,7 +81,7 @@ const Experience = () => {
       id: 5,
       role: 'Project Scientist',
       company: 'Indian Institute of Technology, Delhi',
-      logo: '/aboutme/images/companies/iitd_logo.png',
+      logo: '/aboutme/images/companies/iitd.png',
       logoFallback: <FaBuilding className="company-logo-fallback text-primary" />,
       period: 'Nov 2018 - Jan 2022',
       description: 'Implemented a Virtual Reality based 3D surgical simulator providing an immersive and realistic training environment for students studying neurosurgery. Implemented fast approximate algorithms for light transport using rasterization. Replicated immersive surgical scenes with complex deformable 3-D anatomies. Implemented mesh-walking for transfer of parameterization. Managed a team of undergraduate students. Used ML-based texture synthesis for anatomical textures. Implemented Physics-based deformations and real-time tearing of thin membranes.',
