@@ -379,7 +379,7 @@ const About = () => {
           }}>
             {!showCanvas ? (
               <img 
-                src="https://randomuser.me/api/portraits/men/40.jpg" 
+                src="https://www.dropbox.com/scl/fi/4j05ei12k1dnq1brjt6j6/tux.png?rlkey=k4ksuow5hnfa4wtoo1xej0ywc&st=ef7hhfb3&raw=1" 
                 alt="Profile" 
                 style={{ 
                   width: '100%', 
@@ -404,7 +404,7 @@ const About = () => {
           </div>
         </Col>
         <Col md={8}>
-          <h2 className="mb-3">About Me</h2>
+          <h2 className="mb-3">Argha Chakraborty</h2>
           <p className="lead">
             Experienced GPU Developer with over 20 years of experience specializing in high-performance 
             graphics programming, CUDA optimization, and parallel computing solutions.
