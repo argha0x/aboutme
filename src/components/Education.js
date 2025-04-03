@@ -12,7 +12,7 @@ const Education = () => {
       gpa: 'CGPA: 8.3/10',
       specialization: 'Computer Graphics, Vision and Physics-Based Animation',
       description: 'Graduate research in advanced computer graphics techniques and physics-based animation systems.',
-      certificateLink: '#'
+      certificateLink: 'https://drive.google.com/file/d/18Wju3POgVUioTfwf3sm-07t2J7oPpwVB/view'
     },
     {
       id: 2,
@@ -22,7 +22,7 @@ const Education = () => {
       duration: '2014-2016',
       gpa: 'CGPA: 9.12/10',
       description: 'Advanced studies in computer science with focus on theoretical and practical applications.',
-      certificateLink: '#'
+      certificateLink: 'https://drive.google.com/file/d/1XtlqOwYgUT9jT_GBDtP8TZ__gG7I2MK6/view'
     },
     {
       id: 3,
@@ -32,7 +32,7 @@ const Education = () => {
       duration: '2011-2014',
       gpa: 'Percentage: 77/100',
       description: 'Comprehensive computer science education with honors distinction. Ranked 10th among over 8,000 students university-wide.',
-      certificateLink: '#'
+      certificateLink: 'https://drive.google.com/file/d/1XlAI-WodGCly0BnAljX6B7ZK1wYLpHGI/view'
     }
   ];
 
@@ -54,7 +54,7 @@ const Education = () => {
                 <p>{edu.description}</p>
               </Col>
               <Col md={3} className="d-flex align-items-center justify-content-md-end mt-3 mt-md-0">
-                <a href={edu.certificateLink} className="btn btn-sm btn-outline-dark">
+                <a href={edu.certificateLink} target="_blank" rel="noopener noreferrer" className="btn btn-sm btn-outline-dark">
                   <i className="bi bi-file-earmark-pdf me-2"></i>View Certificate
                 </a>
               </Col>

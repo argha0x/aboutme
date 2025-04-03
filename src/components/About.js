@@ -427,13 +427,23 @@ const About = () => {
           <p className="lead">
           Visual Computing | GPU Programming | 3D Rendering | Image & Mesh Processing | Vision</p>
           <p>
-          I operate at the crossroads of engineering and research to push the boundaries of visual computing—combining hands-on expertise in 3D rendering, physics-based animation, and image processing. Whether it's accelerating real-time graphics performance or driving innovation in machine learning-driven image analysis, I'm passionate about transforming cutting-edge theory into impactful, real-world solutions.
+              I operate at the crossroads of <span class="fw-bold text-primary">engineering</span> and <span class="fw-bold text-primary">research</span> to push the boundaries of visual computing combining expertise in 
+              3D rendering, physics-based animation, and image processing. Whether it's accelerating 
+              real-time graphics performance or driving innovation in machine learning-driven image analysis, I'm passionate about 
+              transforming cutting-edge theory into impactful, real-world solutions.
           </p>
-
           <p>
-          Outside the lab, you'll find me indulging my creative passions—playing classical guitar, practicing piano, or honing my fine-art skills. These artistic pursuits keep me curious and imaginative, fueling my enthusiasm for the latest developments in computer graphics, computer vision, and AI. I avidly follow top-tier conferences to stay ahead of the curve, and I'm always eager to collaborate on forward-thinking projects that bridge the gap between science and artistry in the world of visual computing.
+              As a <span class="fw-bold text-primary">graphics engineer</span> with a strong affinity for research, I have extensive experience in standalone or
+              web integrations and development, bridging the gap between backend systems and advanced visualization techniques.
           </p>
-        
+          <p>
+              I'm also eager to pursue further research in machine learning within the fields of <span class="fw-bold text-primary">graphics</span> and the <span class="fw-bold text-primary">medical domain</span>, exploring new frontiers where AI can revolutionize visual computing and healthcare.
+          </p>
+          <p>
+              Outside the lab, you'll find me indulging my creative passions—playing classical guitar, practicing piano, or honing my fine-art skills. 
+              These artistic pursuits keep me curious and imaginative, fueling my enthusiasm for the latest developments in computer graphics, computer vision, and AI. 
+              I avidly follow top-tier conferences to stay ahead of the curve, and I'm always eager to collaborate on forward-thinking projects that merge science and artistry in the world of visual computing.
+          </p>
           <div className="mt-3 d-flex gap-2 flex-wrap">
             <a href="/aboutme/ArghaApr.pdf" download className="btn btn-outline-dark flex-grow-1 flex-md-grow-0">
               <FaDownload className="me-2" /> Download Resume

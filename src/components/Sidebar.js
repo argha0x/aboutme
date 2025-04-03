@@ -114,7 +114,7 @@ const Sidebar = () => {
     return (
       <Navbar bg="white" expand="lg" className="mb-4 shadow-sm">
         <Container>
-          <Navbar.Brand as={Link} to="/" className="fw-bold">Argha Chakraborty</Navbar.Brand>
+          <Navbar.Brand as={Link} to="/" className="fw-bold">About Me</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">
