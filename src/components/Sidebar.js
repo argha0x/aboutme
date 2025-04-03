@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { Nav, Navbar, Container } from 'react-bootstrap';
+import { Nav, Navbar, Container, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { FaTools } from 'react-icons/fa';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
@@ -93,9 +94,9 @@ const Sidebar = () => {
   }, [mainLinks]);
 
   const externalLinks = [
-    { id: 'hobbies', title: 'Hobbies', url: '#', icon: 'bi-heart' },
-    { id: 'journal', title: 'Journal', url: '#', icon: 'bi-journal' },
-    { id: 'blog', title: 'Blog', url: '#', icon: 'bi-rss' }
+    { id: 'hobbies', title: 'Hobbies', url: '#', icon: 'bi-heart', wip: true },
+    { id: 'journal', title: 'Journal', url: '#', icon: 'bi-journal', wip: true },
+    { id: 'blog', title: 'Blog', url: '#', icon: 'bi-rss', wip: true }
   ];
 
   const handleNavClick = (linkId) => {
@@ -105,7 +106,7 @@ const Sidebar = () => {
   const handleExternalClick = (e, link) => {
     e.preventDefault();
     // In a real app, you would have actual URLs here
-    alert(`The ${link.title} page will be available soon!`);
+    alert(`The ${link.title} page is currently under development and will be available soon!`);
   };
 
   // Mobile Navigation
@@ -131,15 +132,25 @@ const Sidebar = () => {
               ))}
               <div className="border-top my-2 d-lg-none"></div>
               {externalLinks.map(link => (
-                <Nav.Link 
-                  key={link.id} 
-                  href={link.url}
-                  onClick={(e) => handleExternalClick(e, link)}
-                  className="text-muted px-3 d-lg-none"
+                <OverlayTrigger
+                  key={link.id}
+                  placement="right"
+                  overlay={
+                    <Tooltip id={`tooltip-mobile-${link.id}`}>
+                      {link.wip ? 'Work in progress - Coming soon!' : ''}
+                    </Tooltip>
+                  }
                 >
-                  <i className={`bi ${link.icon} me-2`}></i>
-                  {link.title}
-                </Nav.Link>
+                  <div 
+                    key={link.id}
+                    className="px-3 d-lg-none wip-link nav-link"
+                    style={{ opacity: link.wip ? '0.6' : '1', cursor: 'default' }}
+                  >
+                    <i className={`bi ${link.icon} me-2`}></i>
+                    {link.title}
+                    {link.wip && <FaTools className="wip-icon" />}
+                  </div>
+                </OverlayTrigger>
               ))}
             </Nav>
           </Navbar.Collapse>
@@ -172,17 +183,26 @@ const Sidebar = () => {
         </div>
         
         {externalLinks.map(link => (
-          <Nav.Link 
-            key={link.id} 
-            href={link.url} 
-            className="nav-link-custom text-muted mb-2"
-            onClick={(e) => handleExternalClick(e, link)}
+          <OverlayTrigger
+            key={link.id}
+            placement="right"
+            overlay={
+              <Tooltip id={`tooltip-${link.id}`}>
+                {link.wip ? 'Work in progress - Coming soon!' : ''}
+              </Tooltip>
+            }
           >
-            <div className="d-flex align-items-center">
-              <i className={`bi ${link.icon} me-3`}></i>
-              <span>{link.title}</span>
+            <div
+              className={`nav-link-custom mb-2 ${link.wip ? 'wip-link' : ''}`}
+              style={{ cursor: 'default' }}
+            >
+              <div className="d-flex align-items-center">
+                <i className={`bi ${link.icon} me-3`}></i>
+                <span>{link.title}</span>
+                {link.wip && <FaTools className="wip-icon" />}
+              </div>
             </div>
-          </Nav.Link>
+          </OverlayTrigger>
         ))}
       </Nav>
       
