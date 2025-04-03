@@ -6,7 +6,7 @@ const Education = () => {
     {
       id: 1,
       degree: 'MS(R), Information Technology',
-      institution: 'Indian Institute of Technology, Delhi',
+      institution: 'Indian Institute of Technology',
       location: 'Delhi, India',
       duration: '2024',
       gpa: 'CGPA: 8.3/10',

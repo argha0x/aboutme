@@ -5,27 +5,21 @@ const Publications = () => {
   const publications = [
     {
       id: 1,
-      title: 'Advanced Machine Learning Techniques for Time Series Analysis',
-      authors: 'Chakraborty, A., Smith, J., & Johnson, R.',
-      journal: 'Journal of Machine Learning Research',
-      year: '2023',
-      link: '#'
+      title: 'A review of virtual reality simulators for neuroendoscopy',
+      authors: 'Baby, B., Singh, R., Suri, A., Dhanakshirur, R. R., Chakraborty, A., Kumar, S., Kalra, P. K., & Banerjee, S.',
+      journal: 'Neurosurgical Review',
+      year: '2019',
+      doi: '10.1007/s10143-019-01164-7',
+      link: 'https://pubmed.ncbi.nlm.nih.gov/31444716/'
     },
     {
       id: 2,
-      title: 'A Novel Approach to Neural Network Optimization',
-      authors: 'Williams, T., Chakraborty, A., & Davis, M.',
-      journal: 'IEEE Transactions on Neural Networks',
-      year: '2022',
-      link: '#'
-    },
-    {
-      id: 3,
-      title: 'Efficient Data Processing for Large-Scale Analytics',
-      authors: 'Chakraborty, A., & Miller, S.',
-      journal: 'International Conference on Data Engineering',
-      year: '2021',
-      link: '#'
+      title: 'Towards Generalised Position Based Dynamics: Theoretical and Empirical Analysis',
+      authors: 'Chakraborty, A., Narain, R. (Guide)',
+      journal: "Master's Thesis, Indian Institute of Technology Delhi",
+      year: '2024',
+      description: "This work explores algorithmic deformation of soft bodies in real-time. The thesis introduces Generalised Position Based Dynamics (GPBD), proving its equivalence to Extended Position Based Dynamics (XPBD) while overcoming limitations for non-linear energy forces. It demonstrates the algorithm's flexibility, stability, and accuracy for both linear and non-linear interaction models.",
+      link: ''
     }
   ];
 
@@ -40,9 +34,17 @@ const Publications = () => {
             <Card.Text>
               <small>
                 <strong>{pub.journal}</strong>, {pub.year}
+                {pub.doi && <span> | DOI: {pub.doi}</span>}
               </small>
             </Card.Text>
-            <a href={pub.link} className="btn btn-sm btn-outline-dark">View Publication</a>
+            {pub.description && (
+              <Card.Text>
+                {pub.description}
+              </Card.Text>
+            )}
+            {pub.link && pub.link.trim() !== '' && (
+              <a href={pub.link} target="_blank" rel="noopener noreferrer" className="btn btn-sm btn-outline-dark">View Publication</a>
+            )}
           </Card.Body>
         </Card>
       ))}
