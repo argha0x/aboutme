@@ -427,17 +427,17 @@ const About = () => {
           <p className="lead">
           Shaders | 3D Rendering | Physics Based Animation | Image & Mesh Processing | Vision</p>
           <p>
-              I operate at the crossroads of <span class="fw-bold text-primary">engineering</span> and <span class="fw-bold text-primary">research</span> to push the boundaries of visual computing combining expertise in 
+              I operate at the crossroads of <span className="fw-bold text-primary">engineering</span> and <span className="fw-bold text-primary">research</span> to push the boundaries of visual computing combining expertise in 
               3D rendering, physics-based animation, and image processing. Whether it's accelerating 
               real-time graphics performance or driving innovation in machine learning-driven image analysis, I'm passionate about 
               transforming cutting-edge theory into impactful, real-world solutions.
           </p>
           <p>
-              As a <span class="fw-bold text-primary">graphics engineer</span> with a strong affinity for research, I have extensive experience in standalone or
+              As a <span className="fw-bold text-primary">graphics engineer</span> with a strong affinity for research, I have extensive experience in standalone or
               web integrations and development, bridging the gap between backend systems and advanced visualization techniques.
           </p>
           <p>
-              I'm also eager to pursue further research in machine learning within the fields of <span class="fw-bold text-primary">graphics</span> and the <span class="fw-bold text-primary">medical domain</span>, exploring new frontiers where AI can revolutionize visual computing and healthcare.
+              I'm also eager to pursue further research in machine learning within the fields of <span className="fw-bold text-primary">graphics</span> and the <span className="fw-bold text-primary">medical domain</span>, exploring new frontiers where AI can revolutionize visual computing and healthcare.
           </p>
           <p>
               Outside the lab, you'll find me indulging my creative passions—playing classical guitar, practicing piano, or honing my fine-art skills. 
