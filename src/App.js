@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import './App.css';
 import Layout from './components/Layout';
+import ProjectOnlyLayout from './components/ProjectOnlyLayout';
 import About from './components/About';
 import Projects from './components/Projects';
 import Experience from './components/Experience';
@@ -32,12 +33,18 @@ function App() {
     <div className="App">
       <Router>
         <ScrollToSection />
-        <Layout>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/project/:projectId" element={<ProjectDetail />} />
-          </Routes>
-        </Layout>
+        <Routes>
+          <Route path="/" element={
+            <Layout>
+              <HomePage />
+            </Layout>
+          } />
+          <Route path="/project/:projectId" element={
+            <ProjectOnlyLayout>
+              <ProjectDetail />
+            </ProjectOnlyLayout>
+          } />
+        </Routes>
       </Router>
     </div>
   );

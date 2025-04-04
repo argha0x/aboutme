@@ -238,7 +238,7 @@ const ProjectDetail = () => {
               <p><strong>Role:</strong> {project.details.role}</p>
               <p><strong>Completed:</strong> {project.details.completionDate}</p>
               
-              {project.details.links && (
+              {project.details.links && project.showLinks !== false && (
                 <div className="mt-4">
                   <h5 className="mb-2">Project Links</h5>
                   {project.details.links.github && (
@@ -307,7 +307,7 @@ const ProjectDetail = () => {
       )}
 
       {/* Call to action */}
-      {project.details.links && project.details.links.live && (
+      {project.details.links && project.details.links.live && project.showLinks !== false && (
         <Row>
           <Col className="text-center mb-5">
             <Button 

@@ -4,9 +4,47 @@
 
 export const projectsData = [
   {
+    id: 1,
+    slug: 'snaptrude-clipping',
+    showInfo: true,
+    showLinks: false,
+    snippet: {
+      title: 'Clipping Functionality for Snaptrude Web App',
+      description: 'Developed an advanced clipping functionality in the Snaptrude web application, enabling architects to visualize section planes dynamically. This feature allows precise slicing of 3D models for architectural analysis, improving workflow efficiency and design clarity.',
+      technologies: ['Babylon.js', 'WebGL', 'GLSL', 'Node.js', 'Express', 'FastAPI', 'MongoDB'],
+      thumbnailImage: '/aboutme/images/projects/clipPlane.png',
+    },
+    details: {
+      fullDescription: 'Architects often require section plane visualization to analyze internal structures, inspect spatial relationships, and communicate design intent effectively. This project involved implementing a real-time clipping functionality in the Snaptrude web app, allowing users to slice through 3D models interactively. The clipping planes can be dynamically adjusted, enabling detailed sectional views for various architectural use cases.\n\nThe clipping effect is efficiently achieved using GPU-accelerated shaders in Babylon.js, ensuring smooth real-time rendering without performance bottlenecks. Custom GLSL shaders were written to discard fragments outside the clipped region, creating sharp, accurate section cuts. The system supports multiple clipping planes, with real-time UI controls for toggling, repositioning, and animating section views.\n\nOn the backend, FastAPI and Node.js with Express were used to manage architectural model data, integrating seamlessly with MongoDB for efficient storage and retrieval of section states. The clipping state can be saved and shared across team members, enabling collaborative architectural reviews.',
+      role: 'Graphics Engineer',
+      completionDate: 'June 2023',
+      features: [
+        'GPU-accelerated custom GLSL shaders for real-time clipping plane visualization',
+        'Multi-plane clipping support for complex architectural sectioning',
+        'Interactive controls for positioning, rotating, and adjusting clipping planes',
+        'Persistent storage of clipping states for collaboration',
+        'Performance optimization for large architectural models',
+        'Cross-platform compatibility across modern browsers'
+      ],
+      challenges: 'Implementing high-performance clipping functionality for large architectural models presented significant challenges. Complex buildings with millions of polygons required careful optimization to maintain interactive frame rates while rendering section cuts. I developed custom shader solutions that leverage GPU parallelism efficiently, using spatial partitioning techniques to limit the shader calculations to relevant areas of the model. Another challenge was creating intuitive UI controls for manipulating clipping planes in 3D space, which required extensive user testing and iterative refinement to achieve an optimal balance between power and simplicity.',
+      outcome: 'The section plane visualization feature has become one of crucial tools in the Snaptrude platform, significantly enhancing architects\' ability to analyze and communicate design concepts.',
+      images: [
+        {
+          src: '/aboutme/images/projects/clipPlane.png',
+          alt: 'Building section view showing interior structure'
+        }
+      ],
+      links: {
+        github: 'https://github.com/yourusername/snaptrude-clipping',
+        documentation: 'https://docs.snaptrude.com/section-planes'
+      }
+    }
+  },
+  {
     id: 0,
     slug: 'neurosurgical-simulator',
     showInfo: false,
+    showLinks: false,
     snippet: {
       title: 'Neurosurgical Simulator for ETV Procedure',
       description: 'Developed a Virtual Reality-based 3D surgical simulator for Endoscopic Third Ventriculostomy (ETV), enabling neurosurgeons to practice and refine their skills in a risk-free environment. The simulator provides real-time scoring based on precision and technique, enhancing surgical training.',

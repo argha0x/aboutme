@@ -22,7 +22,8 @@ const Skillset = () => {
     "HLSL",
     "Python",
     "Swift",
-    "Ruby"
+    "Ruby",
+    "JavaScript"
   ];
 
   return (
