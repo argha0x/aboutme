@@ -7,8 +7,10 @@ const ProjectOnlyLayout = ({ children }) => {
       <div className="floating-theme-toggle">
         <ThemeToggle id="project-theme-toggle" />
       </div>
-      <main className="py-3">
-        {children}
+      <main className="py-3 px-md-4">
+        <div className="project-wrapper">
+          {children}
+        </div>
       </main>
     </div>
   );

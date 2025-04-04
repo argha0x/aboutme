@@ -166,7 +166,7 @@ const ProjectDetail = () => {
 
   // New project data format
   return (
-    <Container className="py-4">
+    <Container fluid className="py-4 project-detail-container">
       {imageModal}
       
       <Row className="mb-4">
@@ -179,7 +179,7 @@ const ProjectDetail = () => {
 
       <Row className="mb-4">
         <Col>
-          <h1 className="border-bottom pb-2 mb-4">{project.snippet.title}</h1>
+          <h1 className="project-title border-bottom pb-2 mb-4">{project.snippet.title}</h1>
         </Col>
       </Row>
 
