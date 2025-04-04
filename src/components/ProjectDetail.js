@@ -204,11 +204,16 @@ const ProjectDetail = () => {
 
           <div className="mb-4">
             <h3 className="mb-3">Key Features</h3>
-            <ul className="list-group list-group-flush">
+            <div className="feature-cards-container">
               {project.details.features.map((feature, index) => (
-                <li className="list-group-item" key={index}>{feature}</li>
+                <div className="feature-card" key={index}>
+                  <div className="feature-card-content">
+                    <span className="feature-number">{(index + 1).toString().padStart(2, '0')}</span>
+                    <span className="feature-text">{feature}</span>
+                  </div>
+                </div>
               ))}
-            </ul>
+            </div>
           </div>
 
           {project.details.challenges && (
@@ -227,42 +232,44 @@ const ProjectDetail = () => {
         </Col>
         
         <Col lg={4}>
-          <div className="p-4 bg-light rounded shadow-sm mb-4">
-            <h4 className="mb-3">Project Information</h4>
-            <p><strong>Role:</strong> {project.details.role}</p>
-            <p><strong>Completed:</strong> {project.details.completionDate}</p>
-            
-            {project.details.links && (
-              <div className="mt-4">
-                <h5 className="mb-2">Project Links</h5>
-                {project.details.links.github && (
-                  <p><a href={project.details.links.github} target="_blank" rel="noopener noreferrer" className="text-decoration-none">
-                    <i className="bi bi-github me-2"></i>GitHub Repository
-                  </a></p>
-                )}
-                {project.details.links.live && (
-                  <p><a href={project.details.links.live} target="_blank" rel="noopener noreferrer" className="text-decoration-none">
-                    <i className="bi bi-globe me-2"></i>Live Demo
-                  </a></p>
-                )}
-                {project.details.links.documentation && (
-                  <p><a href={project.details.links.documentation} target="_blank" rel="noopener noreferrer" className="text-decoration-none">
-                    <i className="bi bi-file-text me-2"></i>Documentation
-                  </a></p>
-                )}
-                {project.details.links.case_study && (
-                  <p><a href={project.details.links.case_study} target="_blank" rel="noopener noreferrer" className="text-decoration-none">
-                    <i className="bi bi-journal me-2"></i>Case Study
-                  </a></p>
-                )}
-                {project.details.links.blog && (
-                  <p><a href={project.details.links.blog} target="_blank" rel="noopener noreferrer" className="text-decoration-none">
-                    <i className="bi bi-pencil me-2"></i>Blog Post
-                  </a></p>
-                )}
-              </div>
-            )}
-          </div>
+          {project.showInfo !== false && (
+            <div className="p-4 bg-light rounded shadow-sm mb-4">
+              <h4 className="mb-3">Project Information</h4>
+              <p><strong>Role:</strong> {project.details.role}</p>
+              <p><strong>Completed:</strong> {project.details.completionDate}</p>
+              
+              {project.details.links && (
+                <div className="mt-4">
+                  <h5 className="mb-2">Project Links</h5>
+                  {project.details.links.github && (
+                    <p><a href={project.details.links.github} target="_blank" rel="noopener noreferrer" className="text-decoration-none">
+                      <i className="bi bi-github me-2"></i>GitHub Repository
+                    </a></p>
+                  )}
+                  {project.details.links.live && (
+                    <p><a href={project.details.links.live} target="_blank" rel="noopener noreferrer" className="text-decoration-none">
+                      <i className="bi bi-globe me-2"></i>Live Demo
+                    </a></p>
+                  )}
+                  {project.details.links.documentation && (
+                    <p><a href={project.details.links.documentation} target="_blank" rel="noopener noreferrer" className="text-decoration-none">
+                      <i className="bi bi-file-text me-2"></i>Documentation
+                    </a></p>
+                  )}
+                  {project.details.links.case_study && (
+                    <p><a href={project.details.links.case_study} target="_blank" rel="noopener noreferrer" className="text-decoration-none">
+                      <i className="bi bi-journal me-2"></i>Case Study
+                    </a></p>
+                  )}
+                  {project.details.links.blog && (
+                    <p><a href={project.details.links.blog} target="_blank" rel="noopener noreferrer" className="text-decoration-none">
+                      <i className="bi bi-pencil me-2"></i>Blog Post
+                    </a></p>
+                  )}
+                </div>
+              )}
+            </div>
+          )}
         </Col>
       </Row>
 

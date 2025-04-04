@@ -32,6 +32,7 @@ const Sidebar = () => {
       const handleScroll = () => {
         const scrollPosition = window.scrollY;
         const viewportHeight = window.innerHeight;
+        const documentHeight = document.body.scrollHeight;
         
         // If we're at the top of the page, highlight About Me
         if (scrollPosition < 100) {
@@ -39,40 +40,57 @@ const Sidebar = () => {
           return;
         }
         
-        // Check each section in reverse order (bottom to top)
-        for (let i = mainLinks.length - 1; i >= 0; i--) {
+        // If we're at the bottom of the page, highlight the last section
+        if (scrollPosition + window.innerHeight >= documentHeight - 50) {
+          const lastLink = mainLinks[mainLinks.length - 1];
+          setActiveLink(lastLink.id);
+          return;
+        }
+        
+        // Track if we found any section in view
+        let foundSection = false;
+        
+        // Check each section in the order they appear on the page
+        for (let i = 0; i < mainLinks.length; i++) {
           const sectionId = mainLinks[i].id;
           const section = document.getElementById(sectionId);
           
           if (section) {
             const rect = section.getBoundingClientRect();
-            const sectionTop = rect.top + window.scrollY;
-            const sectionBottom = rect.bottom + window.scrollY;
             
-            // For the last section (Schedule), be more lenient with detection
-            if (sectionId === 'schedule') {
-              if (rect.top < viewportHeight && rect.bottom > 0) {
-                setActiveLink(sectionId);
-                break;
-              }
-            } else {
-              // For other sections, check if the section is in view
-              // and if we've scrolled past its top position
-              const isInView = rect.top < viewportHeight * 0.5;
-              const hasScrolledPast = scrollPosition >= sectionTop - 100;
-              const isLastSection = sectionId === 'contact';
+            // Check if this section is in the viewport (with some buffer)
+            // A section is considered "in view" when its top is within 40% from the top of the viewport
+            if (rect.top <= viewportHeight * 0.4 && rect.bottom > 0) {
+              setActiveLink(sectionId);
+              foundSection = true;
+              break;
+            }
+          }
+        }
+        
+        // If no section was found in view and we're not at the bottom,
+        // check each section again to find the one closest to the viewport
+        if (!foundSection && scrollPosition + window.innerHeight < documentHeight - 50) {
+          let closestSection = null;
+          let closestDistance = Infinity;
+          
+          for (let i = 0; i < mainLinks.length; i++) {
+            const sectionId = mainLinks[i].id;
+            const section = document.getElementById(sectionId);
+            
+            if (section) {
+              const rect = section.getBoundingClientRect();
+              const distance = Math.abs(rect.top - viewportHeight * 0.3);
               
-              // For the Contact section, be more lenient with detection
-              if (isLastSection) {
-                if (rect.top < viewportHeight * 0.7 || scrollPosition >= sectionTop - 50) {
-                  setActiveLink(sectionId);
-                  break;
-                }
-              } else if (isInView && hasScrolledPast) {
-                setActiveLink(sectionId);
-                break;
+              if (distance < closestDistance) {
+                closestDistance = distance;
+                closestSection = sectionId;
               }
             }
+          }
+          
+          if (closestSection) {
+            setActiveLink(closestSection);
           }
         }
       };

@@ -15,6 +15,16 @@
   --border-color: rgba(0, 0, 0, 0.1);
   --badge-bg: #f0f0f0;
   --badge-text: #555;
+  --feature-bg: #f8f9fa;
+  --feature-border: #e0e0e0;
+  --feature-number: #007bff;
+  --feature-text: #212529;
+  --primary-color: #007bff;
+  --highlight-color: #63b3ed;
+  --project-section-bg: #ffffff;
+  --project-section-border: #e9ecef;
+  --list-item-bg: #ffffff;
+  --list-item-border: #e9ecef;
 }
 
 [data-theme="dark"] {
@@ -33,6 +43,16 @@
   --border-color: rgba(255, 255, 255, 0.1);
   --badge-bg: #3d3d3d;
   --badge-text: #d0d0d0;
+  --feature-bg: #2d3748;
+  --feature-border: #4a5568;
+  --feature-number: #63b3ed;
+  --feature-text: #e2e8f0;
+  --primary-color: #63b3ed;
+  --highlight-color: #63b3ed;
+  --project-section-bg: #2d2d2d;
+  --project-section-border: #3d3d3d;
+  --list-item-bg: #2d2d2d;
+  --list-item-border: #3d3d3d;
 }
 
 body {
@@ -705,11 +725,9 @@ h1, h2, h3, h4, h5, h6 {
 
 /* List group styles */
 .list-group-item {
-  background-color: transparent;
-  border-left: none;
-  border-right: none;
-  padding-left: 0;
-  padding-right: 0;
+  background-color: var(--list-item-bg);
+  color: var(--text-color);
+  border-color: var(--list-item-border);
 }
 
 /* Responsive adjustments */
@@ -910,7 +928,7 @@ small {
 }
 
 /* Skillset Section Styles */
-.course-tags-container {
+.course-tags-container, .language-tags-container {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
@@ -946,3 +964,124 @@ small {
 [data-theme="dark"] .course-tag:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
 }
+
+/* Language Tags */
+.language-tag {
+  display: inline-block;
+  background-color: #e3f2fd;
+  color: #0d47a1;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(13, 71, 161, 0.1);
+  border: 1px solid rgba(13, 71, 161, 0.1);
+}
+
+.language-tag:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 5px 10px rgba(13, 71, 161, 0.2);
+  cursor: default;
+}
+
+.language-tag-special {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  border: 1px dashed #2e7d32;
+  font-style: italic;
+}
+
+.language-tag-special:hover {
+  background-color: #c8e6c9;
+}
+
+[data-theme="dark"] .language-tag {
+  background-color: #1a237e;
+  color: #bbdefb;
+  border-color: rgba(187, 222, 251, 0.2);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .language-tag:hover {
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="dark"] .language-tag-special {
+  background-color: #1b5e20;
+  color: #c8e6c9;
+  border: 1px dashed #c8e6c9;
+}
+
+[data-theme="dark"] .language-tag-special:hover {
+  background-color: #2e7d32;
+}
+
+/* Project Detail Page Styles */
+[data-theme="dark"] .bg-light {
+  background-color: var(--card-bg) !important;
+}
+
+[data-theme="dark"] .list-group-item {
+  background-color: var(--list-item-bg);
+  color: var(--text-color);
+  border-color: var(--list-item-border);
+}
+
+[data-theme="dark"] .border-bottom {
+  border-color: var(--border-color) !important;
+}
+
+[data-theme="dark"] .btn-outline-secondary {
+  color: var(--text-color);
+  border-color: var(--border-color);
+}
+
+[data-theme="dark"] .btn-outline-secondary:hover {
+  background-color: var(--active-bg);
+  color: var(--text-color);
+  border-color: var(--border-color);
+}
+
+/* Feature cards styling */
+.feature-cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+  
+.feature-card {
+  border: 1px solid var(--feature-border);
+  border-radius: 8px;
+  background-color: var(--feature-bg);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  overflow: hidden;
+}
+  
+.feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+  
+.feature-card-content {
+  padding: 1.25rem;
+  display: flex;
+  align-items: flex-start;
+}
+  
+.feature-number {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--feature-number);
+  margin-right: 12px;
+  opacity: 0.8;
+}
+  
+.feature-text {
+  color: var(--feature-text);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+  
+/* Add any additional CSS you need... */

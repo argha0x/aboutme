@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Row, Col, Image } from 'react-bootstrap';
-import { FaNewspaper, FaBuilding, FaHistory } from 'react-icons/fa';
+import { Container, Row, Col, Card } from 'react-bootstrap';
+import { FaNewspaper, FaBuilding, FaHistory, FaCalendarAlt } from 'react-icons/fa';
 
 const Experience = () => {
   const [experienceTime, setExperienceTime] = useState({ years: 0, months: 0, days: 0 });
@@ -47,7 +47,7 @@ const Experience = () => {
       role: 'Senior Staff Engineer XR',
       company: 'Stryker',
       logo: '/aboutme/images/companies/Stryker_logo.svg',
-      logoFallback: <FaBuilding className="company-logo-fallback text-primary" />,
+      logoFallback: <FaBuilding className="company-logo-fallback" />,
       period: 'Sept 2024 - Current',
       description: 'Delivering high-performance visualization and interactive graphics for advanced robotic applications. Working on the visualisation pipeline of Stryker Mako robots.'
     },
@@ -56,7 +56,7 @@ const Experience = () => {
       role: 'Lead Engineer',
       company: 'Valeo',
       logo: '/aboutme/images/companies/valeo_Logo.svg',
-      logoFallback: <FaBuilding className="company-logo-fallback text-primary" />,
+      logoFallback: <FaBuilding className="company-logo-fallback" />,
       period: 'Jul 2023 - Sept 2024',
       description: 'Optimised vehicle graphics rendering for low power ECUs. Working in streamlining and render frame optimisation. Leading research related to mesh processing and correcting distortions in fish-eye camera output.'
     },
@@ -65,7 +65,7 @@ const Experience = () => {
       role: 'Senior Graphics Engineer',
       company: 'Snaptrude',
       logo: '/aboutme/images/companies/snaptrude_logo.png',
-      logoFallback: <FaBuilding className="company-logo-fallback text-primary" />,
+      logoFallback: <FaBuilding className="company-logo-fallback" />,
       period: 'Jan 2023 - Jul 2023',
       description: 'Collaborated with the graphics R&D team to engineer a rapid prototyping platform for building architects. Innovated and implemented new features in the CAD software, such as real-time collaboration and advanced modelling tools, to enhance the platform\'s functionality and improve the design process.'
     },
@@ -73,7 +73,7 @@ const Experience = () => {
       id: 4,
       role: 'Senior Software Engineer',
       company: 'Toshiba',
-      logoFallback: <FaBuilding className="company-logo-fallback text-primary" />,
+      logoFallback: <FaBuilding className="company-logo-fallback" />,
       period: 'Feb 2022 - Jan 2023',
       description: 'Maintained an image processing library that facilitates the 3D reconstruction of specific anatomical structures, such as bones and organs, from 2D segmented biomedical images. This library enables doctors to accurately assess their patients\' vulnerabilities and conditions.'
     },
@@ -82,7 +82,7 @@ const Experience = () => {
       role: 'Project Scientist',
       company: 'Indian Institute of Technology, Delhi',
       logo: '/aboutme/images/companies/iitd.png',
-      logoFallback: <FaBuilding className="company-logo-fallback text-primary" />,
+      logoFallback: <FaBuilding className="company-logo-fallback" />,
       period: 'Nov 2018 - Jan 2022',
       description: 'Implemented a Virtual Reality based 3D surgical simulator providing an immersive and realistic training environment for students studying neurosurgery. Implemented fast approximate algorithms for light transport using rasterization. Replicated immersive surgical scenes with complex deformable 3-D anatomies. Implemented mesh-walking for transfer of parameterization. Managed a team of undergraduate students. Used ML-based texture synthesis for anatomical textures. Implemented Physics-based deformations and real-time tearing of thin membranes.',
       featuredLink: {
@@ -95,100 +95,200 @@ const Experience = () => {
       role: 'Software Engineer',
       company: 'Threadsol (now COATS Digital)',
       logo: '/aboutme/images/companies/coats_logo.png',
-      logoFallback: <FaBuilding className="company-logo-fallback text-primary" />,
+      logoFallback: <FaBuilding className="company-logo-fallback" />,
       period: 'Feb 2016 - Jun 2018',
       description: 'Contributed to the Algorithm Development team that designed technical solutions for reducing garment waste in large-scale manufacturing industries. Developed Cut-Order Planning and other optimization algorithms to improve the efficiency of the production process and reduce the industry\'s carbon footprint.'
     }
   ];
 
   return (
-    <Container id="experience" className="py-5">
-      <div className="d-flex flex-column flex-md-row justify-content-md-between align-items-md-center gap-3 mb-5">
-        <h2 className="border-bottom pb-2 mb-0">Work Experience</h2>
-        <div className="d-flex align-items-center bg-primary bg-opacity-10 p-3 rounded-4 shadow-sm">
-          <FaHistory className="text-primary me-3 fs-5" />
-          <span className="fw-semibold">
-            {experienceTime.years} years, {experienceTime.months}months, {experienceTime.days} days
-          </span>
+    <section id="experience" className="py-5">
+      <Container>
+        <div className="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-4">
+          <h2 className="section-title mb-3 mb-md-0">Work Experience</h2>
+          <div className="experience-counter p-2 p-sm-3 rounded-3 shadow-sm">
+            <div className="d-flex align-items-center">
+              <FaHistory className="experience-icon me-2" />
+              <span className="experience-text">
+                {experienceTime.years} years, {experienceTime.months} months, {experienceTime.days} days
+              </span>
+            </div>
+          </div>
         </div>
-      </div>
-      
-      {experiences.map(exp => (
-        <div key={exp.id} className="mb-4">
-          <Row className="mb-2">
-            <Col>
-              <div className="d-flex align-items-center">
-                <div className="company-logo me-2" style={{ width: '32px', height: '32px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  {exp.logo ? (
-                    <Image 
-                      src={exp.logo} 
-                      alt={`${exp.company} logo`} 
-                      width={32} 
-                      height={32} 
-                      onError={(e) => {
-                        if (e.target) {
-                          e.target.style.display = 'none';
-                          const parent = e.target.parentNode;
-                          if (parent && parent.querySelector('.company-logo-fallback')) {
-                            parent.querySelector('.company-logo-fallback').style.display = 'block';
-                          }
-                        }
-                      }}
-                      style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }}
-                    />
-                  ) : null}
-                  <div className="company-logo-fallback" style={{ display: exp.logo ? 'none' : 'block' }}>
-                    {exp.logoFallback}
+        
+        <div className="timeline-container">
+          {experiences.map((exp, index) => (
+            <Card key={exp.id} className="experience-card mb-4 border-0 shadow-sm">
+              <Card.Body className="p-3 p-md-4">
+                <div className="d-flex flex-column flex-md-row justify-content-between mb-3">
+                  <div className="d-flex align-items-center mb-2 mb-md-0">
+                    <div className="company-logo-container me-3">
+                      {exp.logo ? (
+                        <img
+                          src={exp.logo}
+                          alt={`${exp.company} logo`}
+                          className="company-logo"
+                          onError={(e) => {
+                            e.target.style.display = 'none';
+                            e.target.nextElementSibling.style.display = 'flex';
+                          }}
+                        />
+                      ) : null}
+                      <div className="company-fallback-logo" style={{ display: exp.logo ? 'none' : 'flex' }}>
+                        {exp.logoFallback}
+                      </div>
+                    </div>
+                    <div>
+                      <h4 className="mb-0 role-title">{exp.role}</h4>
+                      <h5 className="company-name mb-0">{exp.company}</h5>
+                    </div>
+                  </div>
+                  <div className="period-badge">
+                    <FaCalendarAlt className="period-icon me-1" />
+                    <span>{exp.period}</span>
                   </div>
                 </div>
-                <h4 className="mb-0 me-2">
-                  {exp.role}
-                </h4>
+                
+                <p className="experience-description mb-2">{exp.description}</p>
+                
                 {exp.featuredLink && (
                   <a 
                     href={exp.featuredLink.url} 
                     target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="text-decoration-none" 
-                    title={exp.featuredLink.title}
+                    rel="noopener noreferrer"
+                    className="featured-link"
                   >
-                    <FaNewspaper className="text-primary fs-5" />
+                    <FaNewspaper className="me-1" />
+                    <span>{exp.featuredLink.title}</span>
                   </a>
                 )}
-              </div>
-              <div className="d-flex justify-content-between align-items-center">
-                <h5 className="text-muted mb-0">{exp.company}</h5>
-                <span className="text-muted small">{exp.period}</span>
-              </div>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <p>{exp.description}</p>
-              {exp.featuredLink && (
-                <div className="mt-2">
-                  <a 
-                    href={exp.featuredLink.url} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="text-decoration-none small"
-                  >
-                    <FaNewspaper className="me-1" /> Featured in: {exp.featuredLink.title}
-                  </a>
-                </div>
-              )}
-            </Col>
-          </Row>
-          {exp.id !== experiences.length && <hr />}
+              </Card.Body>
+            </Card>
+          ))}
         </div>
-      ))}
-
+      </Container>
+      
       <style jsx="true">{`
+        .experience-counter {
+          background-color: var(--card-bg);
+          border: 1px solid var(--border-color);
+        }
+        
+        .experience-icon {
+          color: var(--text-color);
+          font-size: 1.1rem;
+        }
+        
+        .experience-text {
+          font-size: 0.9rem;
+          font-weight: 500;
+        }
+        
+        .timeline-container {
+          position: relative;
+        }
+        
+        .experience-card {
+          background-color: var(--card-bg);
+          border-radius: 8px;
+          transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .experience-card:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 8px 15px var(--card-shadow) !important;
+        }
+        
+        .company-logo-container {
+          width: 40px;
+          height: 40px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          overflow: hidden;
+        }
+        
+        .company-logo, .company-fallback-logo {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+        }
+        
+        .company-fallback-logo {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: var(--badge-bg);
+          border-radius: 6px;
+          color: var(--text-color);
+        }
+        
         .company-logo-fallback {
-          font-size: 24px;
+          font-size: 1.4rem;
+        }
+        
+        .role-title {
+          font-size: 1.2rem;
+          color: var(--text-color);
+        }
+        
+        .company-name {
+          font-size: 0.95rem;
+          color: var(--text-muted);
+        }
+        
+        .period-badge {
+          display: flex;
+          align-items: center;
+          font-size: 0.85rem;
+          color: var(--text-muted);
+          padding: 0.25rem 0.75rem;
+          background-color: var(--badge-bg);
+          border-radius: 30px;
+          margin-top: 0.5rem;
+        }
+        
+        .period-icon {
+          font-size: 0.8rem;
+        }
+        
+        .experience-description {
+          color: var(--text-color);
+          font-size: 0.95rem;
+          line-height: 1.5;
+        }
+        
+        .featured-link {
+          display: inline-flex;
+          align-items: center;
+          color: var(--text-color);
+          background-color: var(--badge-bg);
+          padding: 0.25rem 0.75rem;
+          border-radius: 30px;
+          font-size: 0.8rem;
+          text-decoration: none;
+          transition: all 0.2s ease;
+        }
+        
+        .featured-link:hover {
+          background-color: var(--active-bg);
+        }
+        
+        @media (max-width: 768px) {
+          .role-title {
+            font-size: 1.1rem;
+          }
+          
+          .company-name {
+            font-size: 0.9rem;
+          }
+          
+          .period-badge {
+            font-size: 0.8rem;
+          }
         }
       `}</style>
-    </Container>
+    </section>
   );
 };
 
