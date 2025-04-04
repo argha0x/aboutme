@@ -51,7 +51,7 @@ const Education = () => {
                 {edu.specialization && (
                   <p className="text-muted mb-3"><strong>Specialization:</strong> {edu.specialization}</p>
                 )}
-                <p>{edu.description}</p>
+                <p className="text-muted mb-3">{edu.description} {edu.specialization}</p>
               </Col>
               <Col md={3} className="d-flex align-items-center justify-content-md-end mt-3 mt-md-0">
                 <a href={edu.certificateLink} target="_blank" rel="noopener noreferrer" className="btn btn-sm btn-outline-dark">

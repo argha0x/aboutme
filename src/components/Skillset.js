@@ -17,6 +17,9 @@ const Skillset = () => {
 
   const languages = [
     "C/C++11",
+    "GLSL",
+    "MSL",
+    "HLSL",
     "Python",
     "Swift",
     "Ruby"

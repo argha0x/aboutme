@@ -73,6 +73,7 @@ const Experience = () => {
       id: 4,
       role: 'Senior Software Engineer',
       company: 'Toshiba',
+      logo: '/aboutme/images/companies/toshiba.png',
       logoFallback: <FaBuilding className="company-logo-fallback" />,
       period: 'Feb 2022 - Jan 2023',
       description: 'Maintained an image processing library that facilitates the 3D reconstruction of specific anatomical structures, such as bones and organs, from 2D segmented biomedical images. This library enables doctors to accurately assess their patients\' vulnerabilities and conditions.'
