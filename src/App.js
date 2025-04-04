@@ -12,12 +12,14 @@ import Publications from './components/Publications';
 import Contact from './components/Contact';
 import ProjectDetail from './components/ProjectDetail';
 import ScrollToSection from './components/ScrollToSection';
+import Skillset from './components/Skillset';
 
 // Main page component with all sections
 const HomePage = () => (
   <>
     <About />
     <Education />
+    <Skillset />
     <Projects />
     <Experience />
     <Publications />

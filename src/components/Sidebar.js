@@ -13,6 +13,7 @@ const Sidebar = () => {
   const mainLinks = useMemo(() => [
     { id: 'about', title: 'About Me', icon: 'bi-person' },
     { id: 'education', title: 'Education', icon: 'bi-mortarboard' },
+    { id: 'skillset', title: 'Skillset', icon: 'bi-award' },
     { id: 'projects', title: 'Projects', icon: 'bi-code-square' },
     { id: 'experience', title: 'Work Experience', icon: 'bi-briefcase' },
     { id: 'publications', title: 'Publications', icon: 'bi-journal-text' },
