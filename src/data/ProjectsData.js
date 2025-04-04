@@ -126,6 +126,50 @@ export const projectsData = [
         documentation: 'https://docs.example.com/uv-transfer-documentation'
       }
     }
+  },
+  {
+    id: 3,
+    slug: 'vasculature-generation',
+    showInfo: true,
+    showLinks: false,
+    snippet: {
+      title: 'Collision-Free Generation of Physiological Vasculature Structures',
+      description: 'Developed a collision-free procedural generation algorithm for vascular structures using Inverse Procedural Modeling (IPM). The project infers L-System grammars from real blood vessel images and uses GPU-based spatial algorithms to generate biologically accurate, collision-free vascular networks for medical visualization and surgical simulation.',
+      technologies: ['pytorch', 'python', 'CUDA', 'OpenGL', 'C++', 'L-Systems', 'Machine Learning'],
+      thumbnailImage: '/aboutme/images/projects/annotate.png',
+    },
+    details: {
+      fullDescription: 'This project focuses on the realistic procedural generation of blood vessels for medical visualization and surgical training. The primary goal is to generate vascular networks that accurately reflect the branching structure of human blood vessels while ensuring that newly generated vessels do not collide or intersect with existing structures.\n\nThe approach is based on Inverse Procedural Modeling (IPM), where an L-System (Lindenmayer System) is inferred from real patient blood vessel images using Machine Learning. The extracted L-System grammar defines the branching rules and growth patterns of the blood vessels. The system then procedurally generates new vessels using GPU-based algorithms that enforce collision-free growth constraints.\n\nThe algorithm is designed to enhance endoscopic visualizations of the human brain by generating realistic vascular structures, improving both medical training and preoperative planning. The use of compute shaders and spatial hashing ensures real-time performance, making the technique suitable for interactive simulations.',
+      role: 'Procedural Generation & Graphics Engineer',
+      completionDate: 'July 2021',
+      features: [
+        'L-System Grammar Inference: Extracts branching structures from real vascular images and converts them into a procedural generation model',
+        'Procedural Blood Vessel Growth: Uses inferred growth rules to synthesize new vascular networks in real-time',
+        'Collision-Free Generation: Implements GPU-accelerated spatial hashing and Signed Distance Fields (SDFs) to prevent vessel intersections',
+        'Realistic Anatomical Constraints: Ensures that generated structures match biological and medical constraints',
+        'Optimized for Medical Visualization: Integrated into endoscopic simulations for neurosurgical applications'
+      ],
+      challenges: 'The key challenge was developing an algorithm that could generate realistic vascular structures while ensuring no collisions between vessels. Traditional collision detection methods were too slow for real-time applications, especially with the complex branching patterns of blood vessels. I developed a GPU-accelerated spatial hashing technique that efficiently partitioned the 3D space, allowing for fast collision queries during vessel growth. Another significant challenge was extracting meaningful L-System grammars from medical images, which required developing custom image processing algorithms to identify and analyze branching patterns in noisy medical scans.',
+      outcome: 'The project successfully created a system that generates realistic, collision-free vascular networks for enhanced medical simulations and surgical planning. The technology has been integrated into VR-based surgical training platforms, helping neurosurgeons visualize patient-specific vascular networks for preoperative analysis. Additionally, the data-driven approach has contributed to biomedical research by providing a novel method for studying vascular growth patterns and procedural modeling. The GPU-based implementation achieves real-time performance, generating complex vascular structures with thousands of branches in under a second.',
+      images: [
+        {
+          src: '/aboutme/images/projects/annotate.png',
+          alt: 'Annotation'
+        },
+        {
+          src: '/aboutme/images/projects/resultVasculature.png',
+          alt: 'L-System Grammer inference with Collision Reduction result'
+        },
+        {
+          src: '/aboutme/images/projects/renderingResult.png',
+          alt: 'Procedurally generated vascular network visualization'
+        }
+      ],
+      links: {
+        github: 'https://github.com/yourusername/vasculature-generation',
+        documentation: 'https://docs.example.com/vasculature-generation'
+      }
+    }
   }
 ];
 
