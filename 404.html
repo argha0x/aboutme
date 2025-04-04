@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Redirecting...</title>
+  <script>
+    // Single Page Apps for GitHub Pages
+    // MIT License
+    // https://github.com/rafgraph/spa-github-pages
+    // This script takes the current URL and converts it to a path relative to
+    // the root domain, then redirects to that URL with a proper base path
+    (function(){
+      var segmentCount = 1; // For repositories of the form username.github.io/repo-name/
+      var location = window.location;
+      var href = location.href;
+      var pathName = location.pathname;
+      
+      // GitHub Pages serves 404.html for all paths that don't exist
+      // So we need to redirect back to the homepage with the path as a parameter
+      var repo = '/me';
+      var l = window.location;
+      
+      // Don't redirect if already on the homepage
+      if (pathName.startsWith(repo) && pathName !== repo + '/') {
+        l.replace(
+          l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+          repo + '/?p=' + encodeURIComponent(pathName.substr(repo.length))
+        );
+      }
+    })();
+  </script>
+</head>
+<body>
+  <h1>Redirecting...</h1>
+  <p>If you are not redirected automatically, click <a href="/aboutme/">here</a>.</p>
+</body>
+</html>
