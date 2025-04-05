@@ -380,7 +380,7 @@ const About = () => {
           }}>
             {!showCanvas ? (
               <img 
-                src="https://www.dropbox.com/scl/fi/rgrnuihcbdd78kg77ocji/arghaHome.png?rlkey=b6nxn2wmb1pf26ujeubr7v547&st=vak5mb5i&raw=1" 
+                src="/aboutme/images/argha.jpeg" 
                 alt="Profile" 
                 style={{ 
                   width: '100%', 
