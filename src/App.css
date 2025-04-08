@@ -1169,3 +1169,35 @@ h1 {
 }
 
 /* Add any additional CSS you need... */
+
+/* Specialization text styles */
+.specialization-text {
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+[data-theme="dark"] .specialization-text {
+  color: var(--highlight-color);
+}
+
+/* Education cards in dark mode */
+[data-theme="dark"] #education .card {
+  background-color: var(--card-bg);
+}
+
+[data-theme="dark"] #education .card h4,
+[data-theme="dark"] #education .card h5,
+[data-theme="dark"] #education .card p,
+[data-theme="dark"] #education .card strong {
+  color: var(--text-color);
+}
+
+[data-theme="dark"] #education .card .text-secondary {
+  color: var(--text-secondary) !important;
+}
+
+[data-theme="dark"] #education .card .text-muted {
+  color: var(--text-muted) !important;
+}
+
+/* Add any additional CSS you need... */

@@ -170,6 +170,43 @@ export const projectsData = [
         documentation: 'https://docs.example.com/vasculature-generation'
       }
     }
+  },
+  {
+    id: 4,
+    slug: 'realtime-csg-subtraction',
+    showInfo: true,
+    showLinks: false,
+    snippet: {
+      title: 'Realtime CSG Subtraction using Image-Space Based Approach',
+      description: 'Developed a high-performance image-space Constructive Solid Geometry (CSG) subtraction algorithm using Metal and VisionOS, enabling real-time rendering of complex subtractions for immersive applications.',
+      technologies: ['Swift', 'Metal', 'VisionOS', 'MSL'],
+      thumbnailImage: '/aboutme/images/projects/cut.png',
+    },
+    details: {
+      fullDescription: 'Traditional object-space CSG operations can be computationally expensive, especially in interactive or immersive environments. To address this, I implemented an image-space based CSG subtraction technique using Metal shaders, achieving real-time performance without compromising accuracy.\n\nThis approach leverages depth buffer comparisons and custom fragment shaders to compute and render subtracted geometry directly in screen space. The project was tailored for VisionOS, enabling rich, interactive 3D visualizations that can run efficiently on Apple\'s spatial computing devices.\n\nThe implementation uses a multi-pass rendering approach where objects are first rendered to separate depth buffers, then a final pass processes these depth values to determine visibility based on CSG subtraction rules. This technique avoids the heavy computational cost of performing boolean operations on meshes in object space, allowing for dynamic, real-time CSG operations even on complex models.',
+      role: 'Graphics Engineer',
+      completionDate: 'April 2024',
+      features: [
+        'Realtime CSG Subtraction: Achieved interactive frame rates for subtractive geometry operations',
+        'Custom Metal Shaders: Utilized MSL for precise depth and stencil manipulation',
+        'Optimized for VisionOS: Integrated seamlessly with Apple\'s spatial runtime for immersive experiences',
+        'Minimal GPU Overhead: Avoided heavy boolean mesh operations by shifting computation to screen space',
+        'Multi-pass Rendering Pipeline: Efficiently manages depth information across rendering stages',
+        'Dynamic CSG Operations: Supports real-time modification of subtraction parameters'
+      ],
+      challenges: 'The primary challenge was implementing accurate CSG subtraction without the traditional computational overhead. Conventional approaches require complex mesh boolean operations that are too slow for real-time applications. I developed a novel image-space technique that performs these operations in screen space using the GPU. Another challenge was handling edge cases where depth precision issues could cause visual artifacts. I implemented a custom depth peeling approach with epsilon adjustments to ensure clean, accurate subtractions even in complex geometric scenarios.',
+      outcome: 'The image-space CSG subtraction technique achieved interactive frame rates (60+ FPS) even for complex models with multiple subtraction operations, making it suitable for real-time immersive applications on VisionOS devices. The algorithm has been integrated into visualization tools for architectural and medical applications, allowing users to dynamically explore interior structures through virtual "cutting" operations without performance penalties.',
+      images: [
+        {
+          src: '/aboutme/images/projects/cut.png',
+          alt: 'Real-time CSG subtraction visualization'
+        }
+      ],
+      links: {
+        github: 'https://github.com/yourusername/realtime-csg-subtraction',
+        documentation: 'https://docs.example.com/csg-subtraction-documentation'
+      }
+    }
   }
 ];
 
