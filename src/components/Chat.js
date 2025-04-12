@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Button, Form, InputGroup } from 'react-bootstrap';
-import { FaRobot, FaTimes, FaMinus, FaPaperPlane } from 'react-icons/fa';
+import { Button } from 'react-bootstrap';
+import { FaTimes, FaMinus } from 'react-icons/fa';
 import ChatModel from '../utils/chatModel';
 import chatData from '../data/chatData';
+import '../styles/Chat.css';
 
 const Chat = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -10,33 +11,10 @@ const Chat = () => {
   const [messages, setMessages] = useState([]);
   const [inputMessage, setInputMessage] = useState('');
   const [model, setModel] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const messagesEndRef = useRef(null);
 
   useEffect(() => {
-    const initializeModel = () => {
-      try {
-        console.log('Initializing chat model...');
-        const chatModel = new ChatModel();
-        console.log('Chat model created, initializing with data...');
-        chatModel.initialize(chatData.questions, chatData.answers);
-        console.log('Chat model initialized successfully');
-        setModel(chatModel);
-        
-        // Add welcome message
-        setMessages([{
-          text: "Hello! I'm your AI assistant. Ask me about my experience, education, skills, or projects.",
-          isUser: false
-        }]);
-      } catch (error) {
-        console.error('Error initializing model:', error);
-        setMessages([{
-          text: "Sorry, I'm having trouble initializing. Please refresh the page and try again.",
-          isUser: false
-        }]);
-      }
-    };
-
     initializeModel();
   }, []);
 
@@ -48,113 +26,112 @@ const Chat = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const handleSendMessage = (e) => {
-    e.preventDefault();
-    if (!inputMessage.trim()) return;
+  const initializeModel = async () => {
+    try {
+      setIsLoading(true);
+      const chatModel = new ChatModel();
+      await chatModel.loadModel();
+      await chatModel.train(chatData);
+      setModel(chatModel);
+      setMessages([{
+        text: "Hello! I'm Argha's AI assistant. How can I help you today?",
+        sender: 'bot'
+      }]);
+    } catch (error) {
+      console.error('Error initializing model:', error);
+      setMessages([{
+        text: "I'm sorry, I'm having trouble initializing. Please try again later.",
+        sender: 'bot'
+      }]);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
-    // Add user message
-    const userMessage = {
-      text: inputMessage,
-      isUser: true
-    };
-    setMessages(prev => [...prev, userMessage]);
+  const handleSendMessage = async (e) => {
+    e.preventDefault();
+    if (!inputMessage.trim() || !model) return;
+
+    const userMessage = inputMessage.trim();
     setInputMessage('');
+    setMessages(prev => [...prev, { text: userMessage, sender: 'user' }]);
 
     try {
-      if (!model) {
-        throw new Error('Chat model not initialized');
-      }
-
-      // Get and add bot response
-      const botResponse = model.findBestMatch(inputMessage);
-      setTimeout(() => {
-        setMessages(prev => [...prev, {
-          text: botResponse,
-          isUser: false
-        }]);
-      }, 500);
+      const response = await model.predictAnswer(userMessage);
+      setMessages(prev => [...prev, { text: response, sender: 'bot' }]);
     } catch (error) {
-      console.error('Error processing message:', error);
+      console.error('Error getting response:', error);
       setMessages(prev => [...prev, {
         text: "I'm sorry, I encountered an error. Please try again.",
-        isUser: false
+        sender: 'bot'
       }]);
     }
   };
 
   return (
-    <div className="chat-container">
-      {!isOpen ? (
+    <div className={`chat-container ${isOpen ? 'open' : ''} ${isMinimized ? 'minimized' : ''}`}>
+      {!isOpen && (
         <Button
           variant="primary"
-          className="chat-button"
+          className="chat-toggle-btn"
           onClick={() => setIsOpen(true)}
         >
-          <FaRobot className="me-2" />
-          Chat Bot
+          Chat with AI
         </Button>
-      ) : (
-        <div className={`chat-window ${isMinimized ? 'minimized' : ''}`}>
+      )}
+      
+      {isOpen && (
+        <div className="chat-window">
           <div className="chat-header">
-            <div className="chat-title">
-              <FaRobot className="me-2" />
-              Chat Assistant
-            </div>
+            <h5>Chat with AI</h5>
             <div className="chat-controls">
               <Button
                 variant="link"
-                className="chat-control-button"
+                className="chat-control-btn"
                 onClick={() => setIsMinimized(!isMinimized)}
               >
                 <FaMinus />
               </Button>
               <Button
                 variant="link"
-                className="chat-control-button"
-                onClick={() => {
-                  setIsOpen(false);
-                  setIsMinimized(false);
-                }}
+                className="chat-control-btn"
+                onClick={() => setIsOpen(false)}
               >
                 <FaTimes />
               </Button>
             </div>
           </div>
           
-          {!isMinimized && (
-            <>
-              <div className="chat-messages">
-                {messages.map((message, index) => (
-                  <div
-                    key={index}
-                    className={`message ${message.isUser ? 'user' : 'bot'}`}
-                  >
-                    {message.text}
-                  </div>
-                ))}
-                <div ref={messagesEndRef} />
+          <div className="chat-messages">
+            {messages.map((message, index) => (
+              <div
+                key={index}
+                className={`message ${message.sender === 'user' ? 'user-message' : 'bot-message'}`}
+              >
+                {message.text}
               </div>
-              
-              <Form onSubmit={handleSendMessage} className="chat-input">
-                <InputGroup>
-                  <Form.Control
-                    type="text"
-                    value={inputMessage}
-                    onChange={(e) => setInputMessage(e.target.value)}
-                    placeholder="Type your message..."
-                    disabled={!model}
-                  />
-                  <Button
-                    variant="primary"
-                    type="submit"
-                    disabled={!inputMessage.trim() || !model}
-                  >
-                    <FaPaperPlane />
-                  </Button>
-                </InputGroup>
-              </Form>
-            </>
-          )}
+            ))}
+            <div ref={messagesEndRef} />
+          </div>
+          
+          <form onSubmit={handleSendMessage} className="chat-input-form">
+            <input
+              type="text"
+              value={inputMessage}
+              onChange={(e) => setInputMessage(e.target.value)}
+              placeholder="Type your message..."
+              disabled={isLoading}
+              className="chat-input"
+            />
+            <Button
+              type="submit"
+              variant="primary"
+              disabled={isLoading || !inputMessage.trim()}
+              className="send-button"
+            >
+              Send
+            </Button>
+          </form>
         </div>
       )}
     </div>
