@@ -14,6 +14,7 @@ import Contact from './components/Contact';
 import ProjectDetail from './components/ProjectDetail';
 import ScrollToSection from './components/ScrollToSection';
 import Skillset from './components/Skillset';
+import Chat from './components/Chat';
 
 // Main page component with all sections
 const HomePage = () => (
@@ -25,6 +26,7 @@ const HomePage = () => (
     <Experience />
     <Publications />
     <Contact />
+    <Chat />
   </>
 );
 

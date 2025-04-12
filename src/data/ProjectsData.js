@@ -207,6 +207,43 @@ export const projectsData = [
         documentation: 'https://docs.example.com/csg-subtraction-documentation'
       }
     }
+  },
+  {
+    id: 5,
+    slug: 'generalized-position-based-dynamics',
+    showInfo: false,
+    showLinks: false,
+    snippet: {
+      title: "Towards Generalised Position Based Dynamics: Theoretical and Empirical Analysis",
+      description: "Developed a generalized version of Position Based Dynamics (GPBD) that works with both linear and non-linear force models. The work proves theoretical equivalence between GPBD and Extended Position Based Dynamics (XPBD), while overcoming limitations for non-linear energy forces. The algorithm demonstrates flexibility, stability, and accuracy for both linear and non-linear interaction models.",
+      technologies: ["C++", "OpenMP", "OpenGL", "Position Based Dynamics", "Numerical Simulation", "Deformable Bodies", "Real-time Simulation"],
+      thumbnailImage: "/aboutme/images/projects/gpbd.png"
+    },
+    details: {
+      fullDescription: "This work explores algorithmic deformation of soft bodies in real-time. Given a discretized 3D model having some material properties, the objective is to simulate the bodies involving the various internal and external forces that act upon it. The primary goal is to simulate deformation as accurately as possible with the least time budget.\n\nPosition Based Dynamics and its subsequent improvement Extended Position Based Dynamics (XPBD) are two such algorithms that are versatile and applicable for real-time simulations. The caveat of these techniques is that they apply to forces that are linear in terms of the energies. The work described in this thesis uplifts this drawback. One of the contributions involves proving that the time stepping algorithm which is defined as Generalised Position Based Dynamics (GPBD) is equivalent to the XPBD update. Without loss of generality, the algorithm is flexible and can be coupled with different interaction models which are both linear and non-linear. Several experiments are conducted to study the method's stability and accuracy. The results and observations noted in this thesis form an experimental validation of the GPBD algorithm.",
+      role: "Research & Development Engineer",
+      completionDate: "July 2023",
+      features: [
+        "Generalized Position Based Dynamics algorithm supporting both linear and non-linear force models",
+        "Theoretical proof of equivalence between GPBD and XPBD",
+        "Real-time simulation of deformable bodies with various material properties",
+        "Extensive experimental validation of stability and accuracy",
+        "Support for complex interaction models and constraints",
+        "Optimized performance using OpenMP for parallel processing"
+      ],
+      challenges: "The primary challenge was developing a generalized framework that could handle both linear and non-linear force models while maintaining the computational efficiency of traditional Position Based Dynamics. Another significant challenge was proving the theoretical equivalence between GPBD and XPBD, which required careful mathematical analysis and validation. The implementation also needed to maintain real-time performance while supporting complex material models and constraints.",
+      outcome: "The research resulted in a novel generalized framework for Position Based Dynamics that significantly expands its applicability to non-linear force models. The theoretical proof and experimental validation demonstrated the algorithm's effectiveness and stability. The work has been published in academic venues and has potential applications in various fields requiring real-time simulation of deformable bodies.",
+      images: [
+        {
+          src: "/aboutme/images/projects/gpbd.png",
+          alt: "Generalized Position Based Dynamics simulation results"
+        }
+      ],
+      links: {
+        github: "#",
+        documentation: "#"
+      }
+    }
   }
 ];
 
