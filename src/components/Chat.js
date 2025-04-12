@@ -34,7 +34,7 @@ const Chat = () => {
       await chatModel.train(chatData);
       setModel(chatModel);
       setMessages([{
-        text: "Hello! I'm Argha's AI assistant. How can I help you today?",
+        text: "Hello! I'm Argha's naive bot. Ask me questions but kindly do not expect to get good answers here. Better to drop me a mail at rghchaks73@gmail.com",
         sender: 'bot'
       }]);
     } catch (error) {
@@ -76,14 +76,14 @@ const Chat = () => {
           className="chat-toggle-btn"
           onClick={() => setIsOpen(true)}
         >
-          Chat with AI
+          Chat
         </Button>
       )}
       
       {isOpen && (
         <div className="chat-window">
           <div className="chat-header">
-            <h5>Chat with AI</h5>
+            <h5>Chat</h5>
             <div className="chat-controls">
               <Button
                 variant="link"
