@@ -216,7 +216,7 @@ export const projectsData = [
     snippet: {
       title: "Towards Generalised Position Based Dynamics: Theoretical and Empirical Analysis",
       description: "Developed a generalized version of Position Based Dynamics (GPBD) that works with both linear and non-linear force models. The work proves theoretical equivalence between GPBD and Extended Position Based Dynamics (XPBD), while overcoming limitations for non-linear energy forces. The algorithm demonstrates flexibility, stability, and accuracy for both linear and non-linear interaction models.",
-      technologies: ["C++", "OpenMP", "OpenGL", "Position Based Dynamics", "Numerical Simulation", "Deformable Bodies", "Real-time Simulation"],
+      technologies: ["C++", "OpenMP", "OpenGL", "Numerical Simulation"],
       thumbnailImage: "/aboutme/images/projects/gpbd.png"
     },
     details: {

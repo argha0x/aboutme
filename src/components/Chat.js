@@ -10,7 +10,7 @@ const Chat = () => {
   const [messages, setMessages] = useState([]);
   const [inputMessage, setInputMessage] = useState('');
   const [model, setModel] = useState(null);
-  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef(null);
 
   useEffect(() => {
@@ -22,7 +22,6 @@ const Chat = () => {
         chatModel.initialize(chatData.questions, chatData.answers);
         console.log('Chat model initialized successfully');
         setModel(chatModel);
-        setError(null);
         
         // Add welcome message
         setMessages([{
@@ -31,7 +30,6 @@ const Chat = () => {
         }]);
       } catch (error) {
         console.error('Error initializing model:', error);
-        setError('Failed to initialize chat. Please refresh the page.');
         setMessages([{
           text: "Sorry, I'm having trouble initializing. Please refresh the page and try again.",
           isUser: false

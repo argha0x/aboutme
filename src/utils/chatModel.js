@@ -1,5 +1,3 @@
-import * as tf from '@tensorflow/tfjs';
-
 class ChatModel {
   constructor() {
     this.questions = [];

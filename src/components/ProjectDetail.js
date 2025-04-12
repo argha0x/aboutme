@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Row, Col, Badge, Button, Modal, Carousel } from 'react-bootstrap';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import projectsData from '../data/ProjectsData';
+import { projectsData } from '../data/ProjectsData';
 import { FaTimes, FaChevronLeft, FaChevronRight, FaExpand } from 'react-icons/fa';
 import 'bootstrap/dist/css/bootstrap.min.css';
 // import '../styles/Gallery.css';

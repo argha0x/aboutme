@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import { FaNewspaper, FaBuilding, FaHistory, FaCalendarAlt } from 'react-icons/fa';
+import { experienceData } from '../data/ExperienceData';
 
 const Experience = () => {
   const [experienceTime, setExperienceTime] = useState({ years: 0, months: 0, days: 0 });
